@@ -87,10 +87,14 @@ export class Loteria{
         this.setConfigJogoPadrao(pTipoJogo);
     }
 
-    GetAposta(): string{
+    compararNumeros(a, b) {
+        return a - b;
+    }
+
+    GetAposta(): number[][]{
         let aposta = new Jogo();
         
-        //aposta.jogos = [[this.configjogo.getQtdeJogo()][this.configjogo.getQtdeNumeros()]];
+        aposta.jogos.length = this.configjogo.getQtdeJogo();
         if((this.configjogo.getExcluidos().length + 1) + this.configjogo.getQtdeNumeros() > 60){
             aposta.critica = "Quantidade de números insuficiente para jogar!";
         }
@@ -99,6 +103,7 @@ export class Loteria{
         }
         else{
             for(let jogo = 0; jogo < this.configjogo.getQtdeJogo(); jogo++){
+                aposta.jogos[jogo].length = this.configjogo.getQtdeNumeros();
                 for(let i = 0; i < this.configjogo.getQtdeNumeros(); i++){
                     /*do{*/
                         if((this.configjogo.getEscolhidos().length > 0) && (i <= this.configjogo.getEscolhidos().length)){
@@ -110,13 +115,16 @@ export class Loteria{
                     /*}while(this.ValidaNumero(jogo));*/
 
                     this.vJogo[jogo] += this.vNum;
-                    aposta.jogos[jogo][i] = this.vNum;
+                    aposta.jogos[jogo][i] = parseInt(this.vNum);
                     aposta.jogo += this.vNum + " - ";
+                    
                 }
+                aposta.jogos[jogo].sort(this.compararNumeros);
                 aposta.jogo += "\n";
             }
             aposta.valido = true;
         };
-        return aposta.jogo;
+        
+        return aposta.jogos;
     }
 }

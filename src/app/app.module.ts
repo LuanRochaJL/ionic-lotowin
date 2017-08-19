@@ -1,3 +1,4 @@
+import { ListaJogoComponent } from './../components/lista-jogo/lista-jogo';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -18,7 +19,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ListaJogoComponent
   ],
   imports: [
     BrowserModule,
