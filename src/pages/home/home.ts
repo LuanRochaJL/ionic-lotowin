@@ -1,5 +1,3 @@
-import { Jogo } from './../../providers/jogo';
-import { ConfiguracaoJogo } from './../../providers/configuracao-jogo';
 import { ListaTipoJogo } from './../../providers/lista-tipo-jogo';
 import { Loteria } from './../../providers/loteria';
 import { TipoJogo } from './../../providers/tipo-jogo';
@@ -16,15 +14,28 @@ export class HomePage {
   private tipojogo: TipoJogo;
   private loteria: Loteria;
   private jogos: number[][];
+  private qtdeJogos: number = 1;
+  private qtdeNumeros: number = 6;
   constructor(public navCtrl: NavController, public admob: AdMobFree) {
     this.tipojogo = ListaTipoJogo.MegaSena;
     this.loteria = new Loteria(ListaTipoJogo.MegaSena);
-    this.jogos = this.loteria.GetAposta();
   }
 
-  teste(){
-    this.loteria.setQtdeJogo(2);
+  GetAposta(){
     this.jogos = this.loteria.GetAposta();
+    if(this.qtdeJogos == 1){
+      this.showBanner();
+    }else{
+      this.launchInterstitial();
+    }
+  }
+
+  setQtdeJogos(){
+    this.loteria.setQtdeJogos(this.qtdeJogos);
+  }
+
+  setQtdeNumeros(){
+    this.loteria.setQtdeNumeros(this.qtdeNumeros);
   }
 
   showBanner(){
@@ -38,7 +49,6 @@ export class HomePage {
 
     this.admob.banner.prepare().then(() => {
     }).catch(e => console.log(e));
-    //this.admob.banner.show();
   }
 
   launchInterstitial(){
@@ -52,6 +62,6 @@ export class HomePage {
 
     this.admob.interstitial.prepare().then(() => {
         // success
-    });
+    }).catch(e => console.log(e));
   }
 }

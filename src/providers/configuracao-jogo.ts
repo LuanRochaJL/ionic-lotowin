@@ -1,24 +1,24 @@
 export class ConfiguracaoJogo{
-    private escolhidos: string[] = [];
-    private excluidos: string[] = [];
+    private escolhidos: number[] = [];
+    private excluidos: number[] = [];
     private qtdeJogo;
     private qtdeNumeros;
     private repetirNumero: boolean;
     private noSequencia: boolean;
 
-    public getEscolhidos(): string[] {
+    public getEscolhidos(): number[] {
         return this.escolhidos;
     }
 
-    public setEscolhidos(escolhidos: string[]) {
+    public setEscolhidos(escolhidos: number[]) {
         this.escolhidos = escolhidos;
     }
 
-    public getExcluidos(): string[] {
+    public getExcluidos(): number[] {
         return this.excluidos;
     }
 
-    public setExcluidos(excluidos: string[]) {
+    public setExcluidos(excluidos: number[]) {
         this.excluidos = excluidos;
     }
 
