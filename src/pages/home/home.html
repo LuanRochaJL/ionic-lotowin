@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Loto Win!</ion-title>
   </ion-navbar>
 </ion-header>
@@ -25,4 +28,5 @@
     Sortear números
   </button>
   <lista-jogo [jogos]="jogos"></lista-jogo>
+  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
