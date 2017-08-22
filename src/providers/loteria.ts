@@ -97,7 +97,7 @@ export class Loteria{
     GetAposta(): number[][]{
         let aposta = new Jogo();
         
-        aposta.jogos.length = this.configjogo.getQtdeJogo();
+        aposta.jogos = new Array(this.configjogo.getQtdeJogo());
         if((this.configjogo.getExcluidos().length) + this.configjogo.getQtdeNumeros() > 60){
             aposta.critica = "Quantidade de números insuficiente para jogar!";
         }
@@ -106,7 +106,7 @@ export class Loteria{
         }
         else{
             for(let jogo = 0; jogo < this.configjogo.getQtdeJogo(); jogo++){
-                aposta.jogos[jogo].length = this.configjogo.getQtdeNumeros();
+                aposta.jogos[jogo] = new Array(this.configjogo.getQtdeNumeros());
                 for(let i = 0; i < this.configjogo.getQtdeNumeros(); i++){
                     do{
                         if((this.configjogo.getEscolhidos().length > 0) && (i <= this.configjogo.getEscolhidos().length)){
