@@ -1,0 +1,16 @@
+$lista-tipo-jogo: (
+    megasena:(
+        color: #209869
+    ),
+    lotofacil: (
+        color: #930089
+    )
+);
+
+@each $loteria, $tipo in $lista-tipo-jogo {
+    .#{$loteria} {
+        color: map-get($tipo, color);
+        font-weight: bold;  
+        font-family: "futura-lt-bold";  
+    }
+}

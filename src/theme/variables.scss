@@ -17,7 +17,6 @@ $colors: (
   dark:       #222
 );
 
-
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -60,3 +59,5 @@ $colors: (
 // --------------------------------------------------
 @import "roboto";
 @import "noto-sans";
+
+@import "global";
