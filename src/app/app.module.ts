@@ -1,3 +1,4 @@
+import { LoteriaProvider } from './../providers/loteria';
 import { ListaJogoComponent } from './../components/lista-jogo/lista-jogo';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +14,8 @@ import { AdMobFree } from '@ionic-native/admob-free';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Loteria2Provider } from '../providers/loteria2';
+import { ListaTipoJogoProvider } from "../providers/lista-tipo-jogo";
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     AdMobFree,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Loteria2Provider,
+    LoteriaProvider,
+    ListaTipoJogoProvider
   ]
 })
 export class AppModule {}

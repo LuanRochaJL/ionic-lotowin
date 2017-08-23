@@ -1,7 +1,9 @@
+import { Injectable } from '@angular/core';
 import { TipoJogo } from './tipo-jogo';
 
-export class ListaTipoJogo{
-    static MegaSena = new TipoJogo('1','6','60');
-    static LotoFacil = new TipoJogo('1','0','0');
-    static Quina = new TipoJogo('1','0','0');
+@Injectable()
+export class ListaTipoJogoProvider{
+    MegaSena = new TipoJogo('MEGA-SENA',1,6,60);
+    LotoFacil = new TipoJogo('LOTOFÁCIL', 3,7,50);
+    Quina = new TipoJogo('QUINA',1,0,0);
 }

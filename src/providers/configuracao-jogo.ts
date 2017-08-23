@@ -6,6 +6,9 @@ export class ConfiguracaoJogo{
     private repetirNumero: boolean;
     private noSequencia: boolean;
 
+    constructor(){   
+    }
+
     public getEscolhidos(): number[] {
         return this.escolhidos;
     }
@@ -22,11 +25,11 @@ export class ConfiguracaoJogo{
         this.excluidos = excluidos;
     }
 
-    public getQtdeJogo(){
+    public getQtdeJogos(){
         return this.qtdeJogo;
     }
 
-    public setQtdeJogo(qtdeJogo){
+    public setQtdeJogos(qtdeJogo){
         this.qtdeJogo = qtdeJogo;
     }
 
@@ -53,6 +56,4 @@ export class ConfiguracaoJogo{
     public setRepetirNumero(repetirNumero: boolean) {
         this.repetirNumero = repetirNumero;
     }
-
-    constructor(){}
 }

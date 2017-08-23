@@ -1,9 +1,9 @@
-import { ListaTipoJogo } from './../../providers/lista-tipo-jogo';
-import { Loteria } from './../../providers/loteria';
-import { TipoJogo } from './../../providers/tipo-jogo';
+import { Loteria2Provider } from './../../providers/loteria2';
+import { LoteriaProvider } from './../../providers/loteria';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
+import { ListaTipoJogoProvider } from "../../providers/lista-tipo-jogo";
 
 @Component({
   selector: 'page-home',
@@ -11,14 +11,23 @@ import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@
 })
 export class HomePage {
 
-  private tipojogo: TipoJogo;
-  private loteria: Loteria;
+  
+  private loteria: LoteriaProvider;
+
   private jogos: number[][];
-  private qtdeJogos: number = 1;
-  private qtdeNumeros: number = 6;
-  constructor(public navCtrl: NavController, public admob: AdMobFree) {
-    this.tipojogo = ListaTipoJogo.MegaSena;
-    this.loteria = new Loteria(ListaTipoJogo.MegaSena);
+  private qtdeJogos: number;
+  private qtdeNumeros: number;
+  private lot: Loteria2Provider;
+  private title: string;
+
+  constructor(public navCtrl: NavController, public admob: AdMobFree, private _loteria: LoteriaProvider,
+              private _tipoJogo: ListaTipoJogoProvider) {
+  }
+
+  ngOnInit(){
+    this.loteria = this._loteria;
+    this.qtdeJogos = this.loteria.configjogo.getQtdeJogos();
+    this.qtdeNumeros = this.loteria.configjogo.getQtdeNumeros();
   }
 
   GetAposta(){
@@ -31,11 +40,11 @@ export class HomePage {
   }
 
   setQtdeJogos(){
-    this.loteria.setQtdeJogos(this.qtdeJogos);
+    this.loteria.configjogo.setQtdeJogos(this.qtdeJogos);
   }
 
   setQtdeNumeros(){
-    this.loteria.setQtdeNumeros(this.qtdeNumeros);
+    this.loteria.configjogo.setQtdeNumeros(this.qtdeNumeros);
   }
 
   showBanner(){

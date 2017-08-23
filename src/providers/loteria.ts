@@ -1,9 +1,12 @@
+import { Injectable } from '@angular/core';
 import { Jogo } from './jogo';
 import { TipoJogo } from './tipo-jogo';
 import { ConfiguracaoJogo } from './configuracao-jogo';
 
-export class Loteria{
-    private configjogo: ConfiguracaoJogo;
+
+@Injectable()
+export class LoteriaProvider{
+    public configjogo: ConfiguracaoJogo;
     private chkQuadrante: number[][] = 
         [[1,2,3,4,5,11,12,13,14,15,21,22,23,24,25],
          [6,7,8,9,10,16,17,18,19,20,26,27,28,29,30],
@@ -14,29 +17,34 @@ export class Loteria{
     private vNum = 0;
     //private vJogo: string[60] = [''];
     public tipoJogo: TipoJogo;
+
+    constructor(/*pTipoJogo: TipoJogo*/){
+        //this.setConfigJogoPadrao(pTipoJogo);
+    }
     
     getRandom(min, max) {
         return Math.floor(Math.random() * ((max+1) - min) + min);
     } 
     public setConfigJogoPadrao(pTipoJogo: TipoJogo) {
+        this.tipoJogo = pTipoJogo;
         this.configjogo = new ConfiguracaoJogo();
         //this.configjogo.escolhidos = new ArrayList<Byte>();
         //this.configjogo.excluidos = new ArrayList<Byte>();
         
-        this.configjogo.setQtdeJogo(pTipoJogo.getQtdJogoMin());
+        this.configjogo.setQtdeJogos(pTipoJogo.getQtdJogoMin());
         this.configjogo.setQtdeNumeros(pTipoJogo.getQtdNumMin());
         this.configjogo.setRepetirNumero(true);
         this.configjogo.setNoSequencia(true);
         //this.vJogo = number[this.configjogo.getQtdeNumeros];
     }
 
-    public setQtdeJogos(pQtdeJogo) {
+    /*public setQtdeJogos(pQtdeJogo) {
         this.configjogo.setQtdeJogo(pQtdeJogo);
     }
 
     public setQtdeNumeros(pQtdeNumero) {
         this.configjogo.setQtdeNumeros(pQtdeNumero);
-    }
+    }*/
 
     private ValidaQuadrante(): boolean{
         let check: boolean = false;
@@ -63,8 +71,8 @@ export class Loteria{
     private ValidaNumero(vJogo: number[][], jogo: number): boolean{
 	    let check: boolean = true;
 		
-		if ((!this.configjogo.getRepetirNumero()) && (this.configjogo.getQtdeJogo() > 0)){
-			for(let i = 1; i == this.configjogo.getQtdeJogo(); i++){
+		if ((!this.configjogo.getRepetirNumero()) && (this.configjogo.getQtdeJogos() > 0)){
+			for(let i = 1; i == this.configjogo.getQtdeJogos(); i++){
 				check = !(vJogo[i].indexOf(this.vNum)>-1);
 			}
         };
@@ -86,10 +94,6 @@ export class Loteria{
 		return check;
     }
 
-    constructor(pTipoJogo: TipoJogo){
-        this.setConfigJogoPadrao(pTipoJogo);
-    }
-
     compararNumeros(a, b) {
         return a - b;
     }
@@ -97,7 +101,7 @@ export class Loteria{
     GetAposta(): number[][]{
         let aposta = new Jogo();
         
-        aposta.jogos = new Array(this.configjogo.getQtdeJogo());
+        aposta.jogos = new Array(this.configjogo.getQtdeJogos());
         if((this.configjogo.getExcluidos().length) + this.configjogo.getQtdeNumeros() > 60){
             aposta.critica = "Quantidade de números insuficiente para jogar!";
         }
@@ -105,7 +109,7 @@ export class Loteria{
             aposta.critica = "Quantidade de números escolhidos para jogar excede a quantidade de número definida por jogo!";
         }
         else{
-            for(let jogo = 0; jogo < this.configjogo.getQtdeJogo(); jogo++){
+            for(let jogo = 0; jogo < this.configjogo.getQtdeJogos(); jogo++){
                 aposta.jogos[jogo] = new Array(this.configjogo.getQtdeNumeros());
                 for(let i = 0; i < this.configjogo.getQtdeNumeros(); i++){
                     do{
