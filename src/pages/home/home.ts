@@ -1,9 +1,9 @@
-import { Loteria2Provider } from './../../providers/loteria2';
-import { LoteriaProvider } from './../../providers/loteria';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
+
 import { ListaTipoJogoProvider } from "../../providers/lista-tipo-jogo";
+import { LoteriaProvider } from './../../providers/loteria';
 
 @Component({
   selector: 'page-home',
@@ -11,27 +11,21 @@ import { ListaTipoJogoProvider } from "../../providers/lista-tipo-jogo";
 })
 export class HomePage {
 
-  
-  private loteria: LoteriaProvider;
-
-  private jogos: number[][];
+  private games: number[][];
   private qtdeJogos: number;
   private qtdeNumeros: number;
-  private lot: Loteria2Provider;
-  private title: string;
 
-  constructor(public navCtrl: NavController, public admob: AdMobFree, private _loteria: LoteriaProvider,
-              private _tipoJogo: ListaTipoJogoProvider) {
+  constructor(public navCtrl: NavController, public admob: AdMobFree, private loteria: LoteriaProvider) {
   }
 
   ngOnInit(){
-    this.loteria = this._loteria;
+    //this.loteria = this._loteria;
     this.qtdeJogos = this.loteria.configjogo.getQtdeJogos();
     this.qtdeNumeros = this.loteria.configjogo.getQtdeNumeros();
   }
 
   GetAposta(){
-    this.jogos = this.loteria.GetAposta();
+    this.games = this.loteria.GetAposta();
     if(this.qtdeJogos == 1){
       this.showBanner();
     }else{

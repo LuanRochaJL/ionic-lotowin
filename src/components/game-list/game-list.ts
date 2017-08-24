@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'lista-jogo',
-  templateUrl: 'lista-jogo.html'
+  selector: 'game-list',
+  templateUrl: 'game-list.html'
 })
 export class ListaJogoComponent {
 
-  @Input() jogos;
+  @Input() games;
 
   constructor() {
   }
-
+  
 }

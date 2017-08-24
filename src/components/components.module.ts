@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ListaJogoComponent } from './lista-jogo/lista-jogo';
+import { ListaJogoComponent } from './game-list/game-list';
 @NgModule({
 	declarations: [ListaJogoComponent],
 	imports: [],
