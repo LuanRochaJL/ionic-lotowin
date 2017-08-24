@@ -10,9 +10,10 @@ import { LoteriaProvider } from './../../providers/loteria';
 })
 export class HomePage {
 
-  private games: number[][];
+  private jogos: number[][];
   private qtdeJogos: number;
   private qtdeNumeros: number;
+  private nomesComponentes: string[] = ["Qtde. jogos:","Qtde. jogos2:"];
 
   constructor(public navCtrl: NavController, public admob: AdMobFree, private loteria: LoteriaProvider) {
   }
@@ -24,7 +25,7 @@ export class HomePage {
   }
 
   GetAposta(){
-    this.games = this.loteria.GetAposta();
+    this.jogos = this.loteria.GetAposta();
     if(this.qtdeJogos == 1){
       this.showBanner();
     }else{

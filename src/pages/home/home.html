@@ -3,11 +3,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><span class="megasena">{{loteria.tipoJogo.getModalidade()}} Mega-Sena</span></ion-title>
+    <ion-title><span class="{{loteria.tipoJogo.getClasse()}}">{{loteria.tipoJogo.getModalidade()}}</span></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <seletor-qtde [loteria]="loteria"></seletor-qtde>
   <ion-item>
     <ion-label>Qtde. jogos </ion-label>
     <ion-badge item-end>{{ qtdeJogos }}</ion-badge>
@@ -27,5 +28,5 @@
   <button ion-button class="primary" (click)="GetAposta()">
     Sortear números
   </button>
-  <game-list [games]="jogos"></game-list>
+  <lista-jogo [jogos]="jogos"></lista-jogo>
 </ion-content>

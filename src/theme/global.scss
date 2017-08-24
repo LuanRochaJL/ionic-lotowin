@@ -8,7 +8,7 @@ $lista-tipo-jogo: (
 );
 
 @each $loteria, $tipo in $lista-tipo-jogo {
-    span.#{$loteria} {
+    .#{$loteria} {
         color: map-get($tipo, color);
         font-weight: bold;   
     }
