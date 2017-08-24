@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
-import { ListaTipoJogoProvider } from "../../providers/lista-tipo-jogo";
 import { LoteriaProvider } from './../../providers/loteria';
 
 @Component({
