@@ -15,7 +15,7 @@ import { LoteriaProvider } from "../providers/loteria";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = TabsPage;
+  rootPage:any = HomePage;
 
   pages: Array<{title: string, avatar: string, component: any, tipo: TipoJogo}>;
 

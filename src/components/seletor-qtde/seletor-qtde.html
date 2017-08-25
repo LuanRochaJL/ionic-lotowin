@@ -1,9 +1,0 @@
-<ion-item>
-  <ion-label class="{{loteria.tipoJogo.getClasse()}}">[nome]</ion-label>
-  <ion-badge item-end class="{{loteria.tipoJogo.getClasse()}}">{{ qtde }}</ion-badge>
-  <ion-range min="{{ loteria.tipoJogo.getQtdJogoMin() }}" 
-             max="10" step="1" [(ngModel)]="qtde" (ionBlur)="loteria.configjogo.setQtdeJogos(qtde)">
-    <ion-label class="{{loteria.tipoJogo.getClasse()}}" range-left>{{ loteria.configjogo.getQtdeJogos() }}</ion-label>
-    <ion-label class="{{loteria.tipoJogo.getClasse()}}" range-right>10</ion-label>
-  </ion-range>
-</ion-item>

@@ -2,15 +2,18 @@ export class TipoJogo{
     private modalidade: string;
     private classe: string;
     private qtdJogoMin: number;
+    private qtdJogoMax: number;
     private qtdNumMin: number;
-    private qtdNumTot: number;
+    private qtdNumMax: number;
 
-    constructor(_modalidade: string, _classe: string, _qtdJogoMin: number, _qtdNumMin: number, _qtdNumTot: number) {
+    constructor(_modalidade: string, _classe: string, _qtdJogoMin: number, 
+                _qtdJogoMax: number, _qtdNumMin: number, _qtdNumMax: number) {
         this.modalidade = _modalidade;
         this.classe = _classe;
         this.qtdJogoMin = _qtdJogoMin;
+        this.qtdJogoMax = _qtdJogoMax;
         this.qtdNumMin = _qtdNumMin;
-        this.qtdNumTot = _qtdNumTot;
+        this.qtdNumMax = _qtdNumMax;
     }
 
     public getModalidade(): string{
@@ -25,11 +28,15 @@ export class TipoJogo{
         return this.qtdJogoMin;
     }
 
+    public getQtdJogoMax(): number{
+        return this.qtdJogoMax;
+    }
+
     public getQtdNumMin(): number{
         return this.qtdNumMin;
     }
 
-    public getQtdNumTot(): number{
-        return this.qtdNumTot;
+    public getQtdNumMax(): number{
+        return this.qtdNumMax;
     }
 };

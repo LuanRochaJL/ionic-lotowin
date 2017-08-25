@@ -13,7 +13,6 @@ export class HomePage {
   private jogos: number[][];
   private qtdeJogos: number;
   private qtdeNumeros: number;
-  private nomesComponentes: string[] = ["Qtde. jogos:","Qtde. jogos2:"];
 
   constructor(public navCtrl: NavController, public admob: AdMobFree, private loteria: LoteriaProvider) {
   }
@@ -33,13 +32,13 @@ export class HomePage {
     }
   }
 
-  setQtdeJogos(){
+  /*setQtdeJogos(){
     this.loteria.configjogo.setQtdeJogos(this.qtdeJogos);
   }
 
   setQtdeNumeros(){
     this.loteria.configjogo.setQtdeNumeros(this.qtdeNumeros);
-  }
+  }*/
 
   showBanner(){
     let bannerConfig: AdMobFreeBannerConfig = {

@@ -12,4 +12,8 @@ $lista-tipo-jogo: (
         color: map-get($tipo, color);
         font-weight: bold;   
     }
+
+    .badge-ios-#{$loteria}{
+        background-color: map-get($tipo, color);
+    }
 }

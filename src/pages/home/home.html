@@ -3,29 +3,47 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><span class="{{loteria.tipoJogo.getClasse()}}">{{loteria.tipoJogo.getModalidade()}}</span></ion-title>
+    <div class="item-block">
+      <ion-avatar item-start>
+          <img src="../../assets/img/{{loteria.tipoJogo.getClasse()}}.png">
+      </ion-avatar>
+      <ion-title item-start>
+        <ion-label class="{{loteria.tipoJogo.getClasse()}}">{{loteria.tipoJogo.getModalidade()}}</ion-label>
+      </ion-title>
+      <div item-end>
+          <ion-label item-end class="{{loteria.tipoJogo.getClasse()}}">Completo</ion-label>
+          <ion-toggle item-end [(ngModel)]="expert" color="{{loteria.tipoJogo.getClasse()}}"></ion-toggle>
+      </div>
+    </div>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <seletor-qtde [loteria]="loteria"></seletor-qtde>
   <ion-item>
-    <ion-label>Qtde. jogos </ion-label>
-    <ion-badge item-end>{{ qtdeJogos }}</ion-badge>
-    <ion-range min="1" max="10" step="1" [(ngModel)]="qtdeJogos" class="primary" (ionBlur)="loteria.configjogo.setQtdeJogos(qtdeJogos)">
-      <ion-label range-left>1</ion-label>
-      <ion-label range-right>10</ion-label>
+      <ion-label class="{{loteria.tipoJogo.getClasse()}}">Qtde. jogos </ion-label>
+      <ion-badge item-end class="badge badge-ios badge-ios-{{ loteria.tipoJogo.getClasse() }}">{{ qtdeJogos }}</ion-badge>   
+  </ion-item>
+  <ion-item>
+    <ion-range min="{{ loteria.tipoJogo.getQtdJogoMin() }}" max="{{ loteria.tipoJogo.getQtdJogoMax() }}" 
+               step="1" [(ngModel)]="qtdeJogos" color="{{ loteria.tipoJogo.getClasse() }}" 
+               (ionBlur)="loteria.configjogo.setQtdeJogos(qtdeJogos)">
+    <ion-label range-left class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdJogoMin() }}</ion-label>
+    <ion-label range-right class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdJogoMax() }}</ion-label>
     </ion-range>
   </ion-item>
   <ion-item>
-      <ion-label>Qtde. numeros </ion-label>
-      <ion-badge item-end>{{qtdeNumeros}}</ion-badge>
-      <ion-range min="6" max="15" step="1" [(ngModel)]="qtdeNumeros" class="primary" (ionBlur)="setQtdeNumeros()">
-        <ion-label range-left>6</ion-label>
-        <ion-label range-right>15</ion-label>
+      <ion-label class="{{loteria.tipoJogo.getClasse()}}">Qtde. numeros </ion-label>
+      <ion-badge item-end class="badge badge-ios badge-ios-{{ loteria.tipoJogo.getClasse() }}">{{ qtdeNumeros }}</ion-badge>   
+  </ion-item>
+  <ion-item>
+      <ion-range min="{{ loteria.tipoJogo.getQtdNumMin() }}" max="{{ loteria.tipoJogo.getQtdNumMax() }}" 
+      step="1" [(ngModel)]="qtdeNumeros" color="{{ loteria.tipoJogo.getClasse() }}" 
+      (ionBlur)="loteria.configjogo.setQtdeNumeros(qtdeNumeros)">
+      <ion-label range-left class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdNumMin() }}</ion-label>
+      <ion-label range-right class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdNumMax() }}</ion-label>  
       </ion-range>
     </ion-item>
-  <button ion-button class="primary" (click)="GetAposta()">
+  <button ion-button color="{{ loteria.tipoJogo.getClasse() }}" (click)="GetAposta()">
     Sortear números
   </button>
   <lista-jogo [jogos]="jogos"></lista-jogo>
