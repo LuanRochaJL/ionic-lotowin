@@ -12,13 +12,15 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoteriaProvider } from './../providers/loteria';
 import { ListaTipoJogoProvider } from "../providers/lista-tipo-jogo";
 import { ListaJogoComponent } from './../components/lista-jogo/lista-jogo';
+import { ListaChipsComponent } from "../components/lista-chips/lista-chips";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     TabsPage,
-    ListaJogoComponent
+    ListaJogoComponent,
+    ListaChipsComponent
   ],
   imports: [
     BrowserModule,

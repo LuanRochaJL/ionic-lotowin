@@ -1,5 +1,5 @@
 export class ConfiguracaoJogo{
-    private escolhidos: number[] = [];
+    escolhidos: number[] = [];
     private excluidos: number[] = [];
     private qtdeJogo;
     private qtdeNumeros;

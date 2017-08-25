@@ -13,13 +13,10 @@ export class LoteriaProvider{
          [31,32,33,34,35,41,42,43,44,45,51,52,53,54,55],
          [36,37,38,39,40,46,47,48,49,50,56,57,58,59,60]];
     private checkQuadrante: boolean[] = [false, false, false, false];
-    //private vQtdeJogo = '0';
     private vNum = 0;
-    //private vJogo: string[60] = [''];
     public tipoJogo: TipoJogo;
 
-    constructor(/*pTipoJogo: TipoJogo*/){
-        //this.setConfigJogoPadrao(pTipoJogo);
+    constructor(){
     }
     
     getRandom(min, max) {
@@ -28,23 +25,14 @@ export class LoteriaProvider{
     public setConfigJogoPadrao(pTipoJogo: TipoJogo) {
         this.tipoJogo = pTipoJogo;
         this.configjogo = new ConfiguracaoJogo();
-        //this.configjogo.escolhidos = new ArrayList<Byte>();
+        this.configjogo.escolhidos = new Array(1,3,5);
         //this.configjogo.excluidos = new ArrayList<Byte>();
         
         this.configjogo.setQtdeJogos(pTipoJogo.getQtdJogoMin());
         this.configjogo.setQtdeNumeros(pTipoJogo.getQtdNumMin());
         this.configjogo.setRepetirNumero(true);
         this.configjogo.setNoSequencia(true);
-        //this.vJogo = number[this.configjogo.getQtdeNumeros];
     }
-
-    /*public setQtdeJogos(pQtdeJogo) {
-        this.configjogo.setQtdeJogo(pQtdeJogo);
-    }
-
-    public setQtdeNumeros(pQtdeNumero) {
-        this.configjogo.setQtdeNumeros(pQtdeNumero);
-    }*/
 
     private ValidaQuadrante(): boolean{
         let check: boolean = false;
@@ -121,7 +109,6 @@ export class LoteriaProvider{
                         }
                     }while(this.ValidaNumero(aposta.jogos,jogo));
 
-                    //this.vJogo[jogo] += this.vNum;
                     aposta.jogos[jogo][i] = this.vNum;
                     aposta.jogo += this.vNum + " - ";
                     
