@@ -11,34 +11,21 @@ import { LoteriaProvider } from './../../providers/loteria';
 export class HomePage {
 
   private jogos: number[][];
-  private qtdeJogos: number;
-  private qtdeNumeros: number;
 
   constructor(public navCtrl: NavController, public admob: AdMobFree, private loteria: LoteriaProvider) {
   }
 
   ngOnInit(){
-    //this.loteria = this._loteria;
-    this.qtdeJogos = this.loteria.configjogo.getQtdeJogos();
-    this.qtdeNumeros = this.loteria.configjogo.getQtdeNumeros();
   }
 
   GetAposta(){
     this.jogos = this.loteria.GetAposta();
-    if(this.qtdeJogos == 1){
+    if(this.loteria.configjogo.qtdeJogos == 1){
       this.showBanner();
     }else{
       this.launchInterstitial();
     }
   }
-
-  /*setQtdeJogos(){
-    this.loteria.configjogo.setQtdeJogos(this.qtdeJogos);
-  }
-
-  setQtdeNumeros(){
-    this.loteria.configjogo.setQtdeNumeros(this.qtdeNumeros);
-  }*/
 
   showBanner(){
     let bannerConfig: AdMobFreeBannerConfig = {

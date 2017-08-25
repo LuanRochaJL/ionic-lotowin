@@ -22,16 +22,15 @@ export class LoteriaProvider{
     getRandom(min, max) {
         return Math.floor(Math.random() * ((max+1) - min) + min);
     } 
+
     public setConfigJogoPadrao(pTipoJogo: TipoJogo) {
         this.tipoJogo = pTipoJogo;
         this.configjogo = new ConfiguracaoJogo();
-        this.configjogo.escolhidos = new Array(1,3,5);
-        //this.configjogo.excluidos = new ArrayList<Byte>();
+        //this.configjogo.escolhidos = new Array(1,3,5);
+        //this.configjogo.excluidos = new Array();
         
-        this.configjogo.setQtdeJogos(pTipoJogo.getQtdJogoMin());
-        this.configjogo.setQtdeNumeros(pTipoJogo.getQtdNumMin());
-        this.configjogo.setRepetirNumero(true);
-        this.configjogo.setNoSequencia(true);
+        this.configjogo.qtdeJogos = pTipoJogo.getQtdJogoMin();
+        this.configjogo.qtdeNumeros = pTipoJogo.getQtdNumMin();
     }
 
     private ValidaQuadrante(): boolean{
@@ -57,18 +56,18 @@ export class LoteriaProvider{
     }
 
     private ValidaNumero(vJogo: number[][], jogo: number): boolean{
-	    let check: boolean = true;
-		
-		if ((!this.configjogo.getRepetirNumero()) && (this.configjogo.getQtdeJogos() > 0)){
-			for(let i = 1; i == this.configjogo.getQtdeJogos(); i++){
-				check = !(vJogo[i].indexOf(this.vNum)>-1);
+	    let check: boolean = false;
+		debugger
+		if (this.configjogo.noRepetirNumero){
+			for(let i = 0; i < jogo; i++){
+				check = (vJogo[i].indexOf(this.vNum)>-1);
 			}
         };
         
-		if(check){
+		if(!check){
 			if((vJogo[jogo].indexOf(this.vNum)>-1) ||
-			   (this.configjogo.getExcluidos().indexOf(this.vNum)>-1)||
-			   ((this.configjogo.getNoSequencia()) &&
+			   (this.configjogo.excluidos.indexOf(this.vNum)>-1)||
+			   ((this.configjogo.noSequencia) &&
 			    ((vJogo[jogo].indexOf(this.vNum + 10)>-1||
 			     (vJogo[jogo].indexOf(this.vNum - 10))>-1||
 			     (vJogo[jogo].indexOf(this.vNum + 1)>-1)||
@@ -89,20 +88,21 @@ export class LoteriaProvider{
     GetAposta(): number[][]{
         let aposta = new Jogo();
         
-        aposta.jogos = new Array(this.configjogo.getQtdeJogos());
-        if((this.configjogo.getExcluidos().length) + this.configjogo.getQtdeNumeros() > 60){
+        aposta.jogos = new Array(this.configjogo.qtdeJogos);
+        if((this.configjogo.excluidos.length) + this.configjogo.qtdeNumeros > 60){
             aposta.critica = "Quantidade de números insuficiente para jogar!";
         }
-        else if((this.configjogo.getEscolhidos().length) > this.configjogo.getQtdeNumeros()){
+        else if((this.configjogo.escolhidos.length) > this.configjogo.qtdeNumeros){
             aposta.critica = "Quantidade de números escolhidos para jogar excede a quantidade de número definida por jogo!";
         }
         else{
-            for(let jogo = 0; jogo < this.configjogo.getQtdeJogos(); jogo++){
-                aposta.jogos[jogo] = new Array(this.configjogo.getQtdeNumeros());
-                for(let i = 0; i < this.configjogo.getQtdeNumeros(); i++){
+            for(let jogo = 0; jogo < this.configjogo.qtdeJogos; jogo++){
+                debugger
+                aposta.jogos[jogo] = new Array(this.configjogo.qtdeNumeros);
+                for(let i = 0; i < this.configjogo.qtdeNumeros; i++){
                     do{
-                        if((this.configjogo.getEscolhidos().length > 0) && (i <= this.configjogo.getEscolhidos().length)){
-                            this.vNum = this.configjogo.getEscolhidos()[i - 1];
+                        if((this.configjogo.escolhidos.length > 0) && (i <= this.configjogo.escolhidos.length - 1)){
+                            this.vNum = this.configjogo.escolhidos[i];
                         }
                         else{
                             this.vNum = this.getRandom(1,60);

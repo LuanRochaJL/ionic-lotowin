@@ -19,26 +19,28 @@
 </ion-header>
 
 <ion-content padding>
+    <div class="item-block">
+        <ion-checkbox color="{{ loteria.tipoJogo.getClasse() }}" [(ngModel)]="loteria.configjogo.noRepetirNumero"></ion-checkbox>
+        <ion-label class="{{loteria.tipoJogo.getClasse()}}">Não Repetir n° entre jogos</ion-label>
+    </div>
   <ion-item>
       <ion-label class="{{loteria.tipoJogo.getClasse()}}">Qtde. jogos </ion-label>
-      <ion-badge item-end class="badge badge-ios badge-ios-{{ loteria.tipoJogo.getClasse() }}">{{ qtdeJogos }}</ion-badge>   
+      <ion-badge item-end class="badge badge-ios badge-ios-{{ loteria.tipoJogo.getClasse() }}">{{ loteria.configjogo.qtdeJogos }}</ion-badge>   
   </ion-item>
   <ion-item>
     <ion-range min="{{ loteria.tipoJogo.getQtdJogoMin() }}" max="{{ loteria.tipoJogo.getQtdJogoMax() }}" 
-               step="1" [(ngModel)]="qtdeJogos" color="{{ loteria.tipoJogo.getClasse() }}" 
-               (ionBlur)="loteria.configjogo.setQtdeJogos(qtdeJogos)">
+               step="1" [(ngModel)]="loteria.configjogo.qtdeJogos" color="{{ loteria.tipoJogo.getClasse() }}">
     <ion-label range-left class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdJogoMin() }}</ion-label>
     <ion-label range-right class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdJogoMax() }}</ion-label>
     </ion-range>
   </ion-item>
   <ion-item>
       <ion-label class="{{loteria.tipoJogo.getClasse()}}">Qtde. numeros </ion-label>
-      <ion-badge item-end class="badge badge-ios badge-ios-{{ loteria.tipoJogo.getClasse() }}">{{ qtdeNumeros }}</ion-badge>   
+      <ion-badge item-end class="badge badge-ios badge-ios-{{ loteria.tipoJogo.getClasse() }}">{{ loteria.configjogo.qtdeNumeros }}</ion-badge>   
   </ion-item>
   <ion-item>
       <ion-range min="{{ loteria.tipoJogo.getQtdNumMin() }}" max="{{ loteria.tipoJogo.getQtdNumMax() }}" 
-      step="1" [(ngModel)]="qtdeNumeros" color="{{ loteria.tipoJogo.getClasse() }}" 
-      (ionBlur)="loteria.configjogo.setQtdeNumeros(qtdeNumeros)">
+      step="1" [(ngModel)]="loteria.configjogo.qtdeNumeros" color="{{ loteria.tipoJogo.getClasse() }}">
       <ion-label range-left class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdNumMin() }}</ion-label>
       <ion-label range-right class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdNumMax() }}</ion-label>  
       </ion-range>

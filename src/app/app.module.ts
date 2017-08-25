@@ -1,3 +1,4 @@
+import { PagesModule } from './../pages/pages.module';
 
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,30 +8,23 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AdMobFree } from '@ionic-native/admob-free';
 
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 import { LoteriaProvider } from './../providers/loteria';
 import { ListaTipoJogoProvider } from "../providers/lista-tipo-jogo";
-import { ListaJogoComponent } from './../components/lista-jogo/lista-jogo';
-import { ListaChipsComponent } from "../components/lista-chips/lista-chips";
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,
-    TabsPage,
-    ListaJogoComponent,
-    ListaChipsComponent
+    MyApp
   ],
   imports: [
     BrowserModule,
+    ComponentsModule,
+    PagesModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage,
-    TabsPage
+    MyApp
   ],
   providers: [
     StatusBar,
