@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { LoteriaProvider } from "../../providers/loteria";
 
 @Component({
-  selector: 'loto-label',
-  templateUrl: 'loto-label.html'
+  selector: 'loto-badge',
+  templateUrl: 'loto-badge.html'
 })
-export class LotoLabelComponent {
+export class LotoBadgeComponent {
 
-  @Input() lblValor: string = 'teste';
+  @Input() bdgValor: number;
 
   constructor(private loteria: LoteriaProvider) {
   }

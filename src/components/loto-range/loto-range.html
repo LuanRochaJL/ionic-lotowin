@@ -1,10 +1,12 @@
 <ion-item>
-  <loto-label [lblValor]="rngValor.lblValor"></loto-label>
+    <loto-label [lblValor]="rngValor.lblValor"></loto-label>
+    <loto-badge item-end [bdgValor]="rngValor.qtde"></loto-badge>
 </ion-item>
 <ion-item>
-<ion-range min="{{ loteria.tipoJogo.getQtdJogoMin() }}" max="{{ loteria.tipoJogo.getQtdJogoMax() }}" 
-           step="1" [(ngModel)]="loteria.configjogo.qtdeJogos" color="{{ loteria.tipoJogo.getClasse() }}">
-<ion-label range-left class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdJogoMin() }}</ion-label>
-<ion-label range-right class="{{loteria.tipoJogo.getClasse()}}">{{ loteria.tipoJogo.getQtdJogoMax() }}</ion-label>
+<ion-range min="{{ rngValor.qtdeMin }}" max="{{ rngValor.qtdeMax }}" 
+           step="1" [(ngModel)]="rngValor.qtde" color="{{ loteria.tipoJogo.getClasse() }}" 
+           (ionChange)="setQtde()">
+<ion-label range-left class="{{loteria.tipoJogo.getClasse()}}">{{ rngValor.qtdeMin }}</ion-label>
+<ion-label range-right class="{{loteria.tipoJogo.getClasse()}}">{{ rngValor.qtdeMax }}</ion-label>
 </ion-range>
 </ion-item>

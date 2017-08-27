@@ -7,6 +7,7 @@ import { LotoLabelComponent } from './loto-label/loto-label';
 import { LotoChkboxComponent } from './loto-chkbox/loto-chkbox';
 import { LotoRangeComponent } from './loto-range/loto-range';
 import { IonicModule } from "ionic-angular";
+import { LotoBadgeComponent } from './loto-badge/loto-badge';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { IonicModule } from "ionic-angular";
         ListaChipsComponent,
         LotoLabelComponent,
         LotoChkboxComponent,
-        LotoRangeComponent
+        LotoRangeComponent,
+        LotoBadgeComponent
     ],
 	imports: [
         CommonModule,
@@ -26,7 +28,8 @@ import { IonicModule } from "ionic-angular";
         ListaChipsComponent,
         LotoLabelComponent,
         LotoChkboxComponent,
-        LotoRangeComponent
+        LotoRangeComponent,
+        LotoBadgeComponent
 	]
 })
 export class ComponentsModule {}
