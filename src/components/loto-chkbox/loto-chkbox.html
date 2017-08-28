@@ -1,4 +1,4 @@
 <ion-item >
-    <ion-label class="{{ loteria.tipoJogo.getClasse() }}">{{chkValor.lblValor}}</ion-label>
-    <ion-checkbox color="{{ loteria.tipoJogo.getClasse() }}" [(ngModel)]="chk" (click)='setChk(chk)'></ion-checkbox>
+    <ion-label class="{{ chkValor.classe }}">{{chkValor.lblValor}}</ion-label>
+    <ion-checkbox color="{{ chkValor.classe }}" [(ngModel)]="chk" (click)='setChk($event)'></ion-checkbox>
 </ion-item>

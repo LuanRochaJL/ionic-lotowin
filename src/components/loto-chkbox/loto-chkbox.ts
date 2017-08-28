@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { LoteriaProvider } from "../../providers/loteria";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'loto-chkbox',
@@ -7,14 +6,17 @@ import { LoteriaProvider } from "../../providers/loteria";
 })
 export class LotoChkboxComponent {
 
-  @Input() chkValor: {lblValor: string, campo: string};
+  @Input() chkValor: {lblValor: string, classe: string, campo: string};
+  @Output() metodoSet = new EventEmitter();
+  chk: boolean;
 
-  constructor(private loteria: LoteriaProvider) {
+  constructor() {
   }
 
-  setChk(_chk){
+  setChk(){
     debugger
-    switch(this.chkValor.campo) { 
+    this.metodoSet.emit(this.chk);
+    /*switch(this.chkValor.campo) { 
       case 'noRepetirNumero': { 
          this.loteria.configjogo.noRepetirNumero = _chk;
          break; 
@@ -26,6 +28,6 @@ export class LotoChkboxComponent {
       default: { 
          break; 
       } 
-    } 
+    } */
   }
 }

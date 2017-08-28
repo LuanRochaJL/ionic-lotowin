@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { LoteriaProvider } from "../../providers/loteria";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'loto-range',
@@ -7,24 +6,14 @@ import { LoteriaProvider } from "../../providers/loteria";
 })
 export class LotoRangeComponent {
 
-  @Input() rngValor: {lblValor: string, qtdeMin: number, qtdeMax: number, qtde: number, tipo: string};
+  @Input() rngValor: {lblValor: string, classe: string, qtdeMin: number, qtdeMax: number, qtde: number};
+  @Output() metodoSet = new EventEmitter();
 
-  constructor(private loteria: LoteriaProvider) {
+    
+  constructor() {
   }
 
-  setQtde(){
-    switch(this.rngValor.tipo) { 
-      case 'jogo': { 
-         this.loteria.configjogo.qtdeJogos = this.rngValor.qtde;
-         break; 
-      } 
-      case 'numero': { 
-         this.loteria.configjogo.qtdeNumeros = this.rngValor.qtde;
-         break; 
-      } 
-      default: { 
-         break; 
-      } 
-    } 
+  setQtde(evento){
+    this.metodoSet.emit(evento.value);
   }
 }
