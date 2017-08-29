@@ -16,12 +16,6 @@ export class HomePage {
   objNumeros: number[] = [];
 
   constructor(public navCtrl: NavController, public admob: AdMobFree, private loteria: LoteriaProvider) {
-    
-  }
-
-  setTeste(evento){
-    debugger
-    this.loteria.configjogo.setQtdeJogos(evento);
   }
 
   ngOnInit(){

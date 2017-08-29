@@ -40,7 +40,18 @@
       </button>
     </ion-chip>
   </ion-item>
-  
+  <ion-item>
+      <ion-grid>
+          <ion-row>
+            <ion-col col-1>1
+            </ion-col>
+            <ion-col col-1>This column will take 4 columns</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>This column will take 6 columns</ion-col>
+          </ion-row>
+        </ion-grid>
+  </ion-item>  
 
   <button ion-button color="{{ loteria.tipoJogo.getClasse() }}" (click)="GetAposta()">
     Sortear números
