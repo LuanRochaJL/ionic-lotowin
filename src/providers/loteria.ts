@@ -7,7 +7,7 @@ import { ConfiguracaoJogo } from './configuracao-jogo';
 @Injectable()
 export class LoteriaProvider{
     public configjogo: ConfiguracaoJogo;
-    private chkQuadrante: number[][] = 
+    public chkQuadrante: number[][] = 
         [[1,2,3,4,5,11,12,13,14,15,21,22,23,24,25],
          [6,7,8,9,10,16,17,18,19,20,26,27,28,29,30],
          [31,32,33,34,35,41,42,43,44,45,51,52,53,54,55],

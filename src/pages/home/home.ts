@@ -13,7 +13,7 @@ export class HomePage {
   private jogos: number[][];
   private rngQtde: Array<{lblValor: string, classe: string, qtdeMin: number, qtdeMax: number, qtde: number}>;
   private chk: Array<{lblValor: string, classe: string}>;
-  objNumeros: number[] = [];
+  cartela: number[][];
 
   constructor(public navCtrl: NavController, public admob: AdMobFree, private loteria: LoteriaProvider) {
   }
@@ -30,8 +30,15 @@ export class HomePage {
           {lblValor: 'Não Repetir n° entre jogos', classe: this.loteria.tipoJogo.getClasse()},
           {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()}
       ];
-    let i = 1;
-    while(this.objNumeros.push(i++)<60){}
+
+    debugger
+    this.cartela = new Array(6);
+    for(let linha = 0;linha<6;linha++){
+        this.cartela[linha] = new Array(10);
+      for(let coluna = 0;coluna < 10;coluna++){
+        this.cartela[linha][coluna] = (coluna+1)+(linha*10);
+      }
+    }
   }
 
   excluirNumero(chip: number) {

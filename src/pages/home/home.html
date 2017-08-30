@@ -24,34 +24,16 @@
   <loto-chkbox [chkValor]="chk[0]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
   <loto-chkbox [chkValor]="chk[1]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
 
+  
   <ion-item>
-    <ion-label item-end class="{{loteria.tipoJogo.getClasse()}}">Seleção de N° fixos</ion-label>
-    <ion-select [(ngModel)]="loteria.configjogo.escolhidos" multiple="true" selectedText=" " 
-                okText="Selecionar" cancelText="Cancelar">
-      <ion-option *ngFor="let numero of objNumeros" value="{{ numero }}"
-      selected>{{ numero }}</ion-option>
-    </ion-select>
+    <div class="tabela">
+      <div class="linha" *ngFor="let linha of cartela; let i = index">
+        <div class="coluna" *ngFor="let coluna of cartela[i]">
+            {{ coluna }}
+          </div>
+      </div>
+    </div>
   </ion-item>
-  <ion-item>
-    <ion-chip *ngFor="let numero of loteria.configjogo.escolhidos">
-      <ion-label>{{ numero }}</ion-label>
-      <button ion-button clear color="megasena" (click)="excluirNumero(numero)">
-        <ion-icon name="close-circle"></ion-icon>
-      </button>
-    </ion-chip>
-  </ion-item>
-  <ion-item>
-      <ion-grid>
-          <ion-row>
-            <ion-col col-1>1
-            </ion-col>
-            <ion-col col-1>This column will take 4 columns</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-6>This column will take 6 columns</ion-col>
-          </ion-row>
-        </ion-grid>
-  </ion-item>  
 
   <button ion-button color="{{ loteria.tipoJogo.getClasse() }}" (click)="GetAposta()">
     Sortear números

@@ -7,6 +7,32 @@ $lista-tipo-jogo: (
     )
 );
 
+div {    
+    //margin:2; /*Defina a separacao das colunas aqui*/
+    padding:0;
+    margin: 2px 2px 2px 2px;
+}
+.tabela{
+    display: table;
+    width: auto;
+}
+.linha{
+    padding:0;
+    clear:both;
+    display: table-row;
+}
+.coluna{    
+    background-color: map-get($colors, megasena);
+    height:25px;
+    width:25px;      
+    float:left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+}
+
 @each $loteria, $tipo in $lista-tipo-jogo {
     .#{$loteria} {
         color: map-get($tipo, color);
