@@ -28,7 +28,7 @@
   <ion-item>
     <div class="tabela">
       <div class="linha" *ngFor="let linha of cartela; let i = index">
-        <div class="coluna" *ngFor="let coluna of cartela[i]">
+        <div id=" {{ coluna }}" class="coluna" *ngFor="let coluna of cartela[i]" (click)="SetNumCartela($event)">
             {{ coluna }}
           </div>
       </div>

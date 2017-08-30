@@ -41,11 +41,23 @@ export class HomePage {
     }
   }
 
-  excluirNumero(chip: number) {
+  SetNumCartela(evento){
+    let num = evento.target.attributes.id.nodeValue;
+    let indexEscolhido = this.loteria.configjogo.escolhidos.indexOf(num);
+    let indexExcluido = this.loteria.configjogo.excluidos.indexOf(num);
     debugger
-    let index = this.loteria.configjogo.escolhidos.indexOf(chip);
-    if (index > -1) {
-      this.loteria.configjogo.escolhidos.splice(index, 1);
+    
+    if(indexEscolhido > -1){
+      this.loteria.configjogo.escolhidos.splice(indexEscolhido, 1);
+      this.loteria.configjogo.excluidos.push(num);
+      evento.target.classList.remove('cartela-escolhido-'+this.loteria.tipoJogo.getClasse());
+      evento.target.classList.add('cartela-excluido-'+this.loteria.tipoJogo.getClasse());
+    }else if(indexExcluido > -1){
+      this.loteria.configjogo.excluidos.splice(indexEscolhido, 1);
+      evento.target.classList.remove('cartela-excluido-'+this.loteria.tipoJogo.getClasse());
+    }else{
+      this.loteria.configjogo.escolhidos.push(num);
+      evento.target.classList.add('cartela-escolhido-'+this.loteria.tipoJogo.getClasse());
     }
   }
 

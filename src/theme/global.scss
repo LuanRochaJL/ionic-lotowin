@@ -22,14 +22,12 @@ div {
     display: table-row;
 }
 .coluna{    
-    background-color: map-get($colors, megasena);
     height:25px;
     width:25px;      
     float:left;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     border-radius: 50%;
 }
 
@@ -37,6 +35,16 @@ div {
     .#{$loteria} {
         color: map-get($tipo, color);
         font-weight: bold;   
+    }
+
+    .cartela-escolhido-#{$loteria}{
+        background-color: map-get($tipo, color);
+        color: white;
+    }
+
+    .cartela-excluido-#{$loteria}{
+        background-color: #dddddd;
+        text-decoration:line-through;
     }
 
     .badge-ios-#{$loteria}{
