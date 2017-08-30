@@ -11,6 +11,7 @@ import { AdMobFree } from '@ionic-native/admob-free';
 import { LoteriaProvider } from './../providers/loteria';
 import { ListaTipoJogoProvider } from "../providers/lista-tipo-jogo";
 import { ComponentsModule } from "../components/components.module";
+import { adMobProvider } from "../providers/adMob";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ComponentsModule } from "../components/components.module";
     AdMobFree,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoteriaProvider,
-    ListaTipoJogoProvider
+    ListaTipoJogoProvider,
+    adMobProvider
   ]
 })
 export class AppModule {}

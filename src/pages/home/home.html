@@ -19,10 +19,10 @@
 </ion-header>
 
 <ion-content padding>
-  <loto-range [rngValor]="rngQtde[0]" (metodoSet)="loteria.configjogo.setQtdeJogos($event)"></loto-range>
-  <loto-range [rngValor]="rngQtde[1]" (metodoSet)="loteria.configjogo.setQtdeNumeros($event)"></loto-range>
-  <loto-chkbox [chkValor]="chk[0]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
-  <loto-chkbox [chkValor]="chk[1]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
+  <loto-range [rngValor]="rngQtde[indice.rngQtde.jogo]" (metodoSet)="loteria.configjogo.setQtdeJogos($event)"></loto-range>
+  <loto-range [rngValor]="rngQtde[indice.rngQtde.numero]" (metodoSet)="loteria.configjogo.setQtdeNumeros($event)"></loto-range>
+  <loto-chkbox [chkValor]="chk[indice.chk.repetir]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
+  <loto-chkbox [chkValor]="chk[indice.chk.sequencia]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
 
   
   <ion-item>

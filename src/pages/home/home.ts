@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 import { LoteriaProvider } from './../../providers/loteria';
+import { adMobProvider } from './../../providers/adMob';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  private indice: {rngQtde:{jogo:0,numero:1},
+                   chk:{repetir:0,sequencia:1}};
   private jogos: number[][];
   private rngQtde: Array<{lblValor: string, classe: string, qtdeMin: number, qtdeMax: number, qtde: number}>;
   private chk: Array<{lblValor: string, classe: string}>;
   cartela: number[][];
 
-  constructor(public navCtrl: NavController, public admob: AdMobFree, private loteria: LoteriaProvider) {
+  constructor(public navCtrl: NavController, private loteria: LoteriaProvider, private adMob: adMobProvider) {
   }
 
   ngOnInit(){
-    debugger
     this.rngQtde = [
         { lblValor: 'Qtde. jogos', classe: this.loteria.tipoJogo.getClasse(), qtdeMin: this.loteria.tipoJogo.getQtdJogoMin(), 
           qtdeMax: this.loteria.tipoJogo.getQtdJogoMax(), qtde: this.loteria.tipoJogo.getQtdJogoMin()},
@@ -64,36 +64,9 @@ export class HomePage {
   GetAposta(){
     this.jogos = this.loteria.GetAposta();
     if(this.loteria.configjogo.qtdeJogos == 1){
-      this.showBanner();
+      this.adMob.showBanner();
     }else{
-      this.launchInterstitial();
+      this.adMob.launchInterstitial();
     }
-  }
-
-  showBanner(){
-    let bannerConfig: AdMobFreeBannerConfig = {
-      isTesting: true, // Remove in production
-      autoShow: true
-      //id: Your Ad Unit ID goes here
-    };
-
-    this.admob.banner.config(bannerConfig);
-
-    this.admob.banner.prepare().then(() => {
-    }).catch(e => console.log(e));
-  }
-
-  launchInterstitial(){
-    let interstitialConfig: AdMobFreeInterstitialConfig = {
-        isTesting: true, // Remove in production
-        autoShow: true
-        //id: Your Ad Unit ID goes here
-    }; 
-
-    this.admob.interstitial.config(interstitialConfig);
-
-    this.admob.interstitial.prepare().then(() => {
-        // success
-    }).catch(e => console.log(e));
   }
 }
