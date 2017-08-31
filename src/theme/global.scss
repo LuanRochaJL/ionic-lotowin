@@ -1,9 +1,11 @@
 $lista-tipo-jogo: (
     megasena:(
-        color: #209869
+        color: #209869,
+        qtdeColuna: 10
     ),
     lotofacil: (
-        color: #930089
+        color: #930089,
+        qtdeColuna: 10
     )
 );
 
@@ -22,8 +24,9 @@ div {
     display: table-row;
 }
 .coluna{    
-    height:25px;
-    width:25px;      
+    //height:25px;
+    //width:25px;  
+    position: relative;    
     float:left;
     display: flex;
     align-items: center;
@@ -35,6 +38,12 @@ div {
     .#{$loteria} {
         color: map-get($tipo, color);
         font-weight: bold;   
+    }
+
+    .coluna-#{$loteria}{
+        @extend .coluna;
+        height:10%;
+        width:10%;   
     }
 
     .cartela-escolhido-#{$loteria}{

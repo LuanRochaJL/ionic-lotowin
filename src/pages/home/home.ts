@@ -9,8 +9,8 @@ import { adMobProvider } from './../../providers/adMob';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  private indice: {rngQtde:{jogo:0,numero:1},
-                   chk:{repetir:0,sequencia:1}};
+  private indice: {rngQtde:{jogo: number,numero: number},
+                   chk:{repetir: number,sequencia: number}};
   private jogos: number[][];
   private rngQtde: Array<{lblValor: string, classe: string, qtdeMin: number, qtdeMax: number, qtde: number}>;
   private chk: Array<{lblValor: string, classe: string}>;
@@ -20,6 +20,8 @@ export class HomePage {
   }
 
   ngOnInit(){
+    this.indice = {rngQtde:{jogo:0,numero:1},
+                   chk:{repetir:0,sequencia:1}};
     this.rngQtde = [
         { lblValor: 'Qtde. jogos', classe: this.loteria.tipoJogo.getClasse(), qtdeMin: this.loteria.tipoJogo.getQtdJogoMin(), 
           qtdeMax: this.loteria.tipoJogo.getQtdJogoMax(), qtde: this.loteria.tipoJogo.getQtdJogoMin()},
@@ -42,10 +44,11 @@ export class HomePage {
   }
 
   SetNumCartela(evento){
+    debugger
     let num = evento.target.attributes.id.nodeValue;
     let indexEscolhido = this.loteria.configjogo.escolhidos.indexOf(num);
     let indexExcluido = this.loteria.configjogo.excluidos.indexOf(num);
-    debugger
+    
     
     if(indexEscolhido > -1){
       this.loteria.configjogo.escolhidos.splice(indexEscolhido, 1);

@@ -24,7 +24,15 @@
   <loto-chkbox [chkValor]="chk[indice.chk.repetir]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
   <loto-chkbox [chkValor]="chk[indice.chk.sequencia]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
 
-  
+  <ion-item>
+    <ion-grid>
+      <ion-row *ngFor="let linha of cartela; let i = index">
+        <ion-col col-1 class="coluna" id="{{ coluna }}" *ngFor="let coluna of cartela[i]" (click)="SetNumCartela($event)">
+          {{ coluna }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
   <ion-item>
     <div class="tabela">
       <div class="linha" *ngFor="let linha of cartela; let i = index">
