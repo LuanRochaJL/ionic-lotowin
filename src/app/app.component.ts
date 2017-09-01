@@ -1,3 +1,4 @@
+import { CartelaPage } from './../pages/cartela/cartela';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -49,6 +50,6 @@ export class MyApp {
 
   openPage(page) {
     this.loteria.setConfigJogoPadrao(page.tipo);
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(TabsPage);
   }
 }
