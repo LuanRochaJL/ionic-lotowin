@@ -5,11 +5,13 @@ import { IonicModule } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ComponentsModule } from "../components/components.module";
+import { CartelaPage } from "./cartela/cartela";
 
 @NgModule({
   declarations: [
     HomePage,
-    TabsPage
+    TabsPage,
+    CartelaPage
   ],
   imports: [
     IonicModule.forRoot(HomePage),
@@ -18,7 +20,13 @@ import { ComponentsModule } from "../components/components.module";
   ],
   exports: [
     HomePage,
-    TabsPage
+    TabsPage,
+    CartelaPage
+  ],
+  entryComponents: [
+    HomePage,
+    TabsPage,
+    CartelaPage
   ]
 })
 export class PagesModule {}

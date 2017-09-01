@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { TabsPage } from './../pages/tabs/tabs';
 import { TipoJogo } from './../providers/tipo-jogo';
 import { ListaTipoJogoProvider } from './../providers/lista-tipo-jogo';
 import { LoteriaProvider } from "../providers/loteria";
@@ -14,7 +15,7 @@ import { LoteriaProvider } from "../providers/loteria";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = TabsPage;
 
   pages: Array<{title: string, avatar: string, component: any, tipo: TipoJogo}>;
 
@@ -48,6 +49,6 @@ export class MyApp {
 
   openPage(page) {
     this.loteria.setConfigJogoPadrao(page.tipo);
-    this.nav.setRoot(page.component);
+    //this.nav.setRoot(page.component);
   }
 }

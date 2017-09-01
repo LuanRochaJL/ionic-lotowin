@@ -9,24 +9,9 @@ $lista-tipo-jogo: (
     )
 );
 
-div {    
-    //margin:2; /*Defina a separacao das colunas aqui*/
-    padding:0;
-    margin: 2px 2px 2px 2px;
-}
-.tabela{
-    display: table;
-    width: auto;
-}
-.linha{
-    padding:0;
-    clear:both;
-    display: table-row;
-}
 .coluna{    
-    //height:25px;
-    //width:25px;  
-    position: relative;    
+    height:25px;
+    width:25px;    
     float:left;
     display: flex;
     align-items: center;
@@ -38,12 +23,6 @@ div {
     .#{$loteria} {
         color: map-get($tipo, color);
         font-weight: bold;   
-    }
-
-    .coluna-#{$loteria}{
-        @extend .coluna;
-        height:10%;
-        width:10%;   
     }
 
     .cartela-escolhido-#{$loteria}{

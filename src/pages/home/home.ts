@@ -33,7 +33,6 @@ export class HomePage {
           {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()}
       ];
 
-    debugger
     this.cartela = new Array(6);
     for(let linha = 0;linha<6;linha++){
         this.cartela[linha] = new Array(10);

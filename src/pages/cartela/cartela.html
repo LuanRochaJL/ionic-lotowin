@@ -1,0 +1,23 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>cartela</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-grid>
+      <ion-row *ngFor="let linha of cartela; let i = index">
+        <ion-col col-1 *ngFor="let coluna of cartela[i]" >
+          <div id=" {{ coluna }}" class="coluna" (click)="SetNumCartela($event)">
+            {{ coluna }}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-content>

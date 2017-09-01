@@ -27,20 +27,13 @@
   <ion-item>
     <ion-grid>
       <ion-row *ngFor="let linha of cartela; let i = index">
-        <ion-col col-1 class="coluna" id="{{ coluna }}" *ngFor="let coluna of cartela[i]" (click)="SetNumCartela($event)">
-          {{ coluna }}
+        <ion-col col-1 *ngFor="let coluna of cartela[i]" >
+          <div id=" {{ coluna }}" class="coluna" (click)="SetNumCartela($event)">
+            {{ coluna }}
+          </div>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-item>
-  <ion-item>
-    <div class="tabela">
-      <div class="linha" *ngFor="let linha of cartela; let i = index">
-        <div id=" {{ coluna }}" class="coluna" *ngFor="let coluna of cartela[i]" (click)="SetNumCartela($event)">
-            {{ coluna }}
-          </div>
-      </div>
-    </div>
   </ion-item>
 
   <button ion-button color="{{ loteria.tipoJogo.getClasse() }}" (click)="GetAposta()">
