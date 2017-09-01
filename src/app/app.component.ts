@@ -49,6 +49,6 @@ export class MyApp {
 
   openPage(page) {
     this.loteria.setConfigJogoPadrao(page.tipo);
-    //this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component);
   }
 }
