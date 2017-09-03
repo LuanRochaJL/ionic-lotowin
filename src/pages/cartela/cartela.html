@@ -1,19 +1,32 @@
-
 <ion-header>
-
   <ion-navbar>
     <ion-title>cartela</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+    <button ion-button block (click)="doCheckbox()">Checkbox</button>
+    
+
+        <button ion-item (click)="doCheckbox()">
+            Números selecionados
+        </button>
+        <div>
+            <loto-chip *ngFor="let numero of loteria.configjogo.escolhidos" chipValor="{{ numero }}" (metodoSet)="excluirNumero($event)"></loto-chip>
+        </div>
+    <div>
+        <ion-chip color="megasena" *ngFor="let numero of loteria.configjogo.escolhidos">
+            <ion-label>{{ numero }}</ion-label>
+            <button color="disabled" ion-button clear (click)="excluirNumero(numero)">
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+          </ion-chip>
+    </div>
   <ion-item>
     <ion-grid>
       <ion-row *ngFor="let linha of cartela; let i = index">
         <ion-col col-1 *ngFor="let coluna of cartela[i]" >
-          <div id=" {{ coluna }}" class="coluna" (click)="SetNumCartela($event)">
+          <div id="{{ coluna }}" class="coluna" (click)="SetNumCartela($event)">
             {{ coluna }}
           </div>
         </ion-col>

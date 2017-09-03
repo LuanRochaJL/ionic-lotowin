@@ -13,7 +13,7 @@ export class LoteriaProvider{
          [31,32,33,34,35,41,42,43,44,45,51,52,53,54,55],
          [36,37,38,39,40,46,47,48,49,50,56,57,58,59,60]];
     private checkQuadrante: boolean[] = [false, false, false, false];
-    private vNum = 0;
+    private vNum: number = 0;
     public tipoJogo: TipoJogo;
 
     constructor(){

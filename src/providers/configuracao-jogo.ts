@@ -4,7 +4,7 @@ export class ConfiguracaoJogo{
     public qtdeJogos: number;
     public qtdeNumeros: number;
     public noRepetirNumero: boolean = false;
-    public noSequencia: boolean = true;
+    public noSequencia: boolean = false;
 
     constructor(){   
     }

@@ -1,10 +1,9 @@
-import { CartelaPage } from './../pages/cartela/cartela';
+import { HomePage } from './../pages/home/home';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from './../pages/tabs/tabs';
 import { TipoJogo } from './../providers/tipo-jogo';
 import { ListaTipoJogoProvider } from './../providers/lista-tipo-jogo';
@@ -16,15 +15,16 @@ import { LoteriaProvider } from "../providers/loteria";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = TabsPage;
+  rootPage:any = HomePage;
 
-  pages: Array<{title: string, avatar: string, component: any, tipo: TipoJogo}>;
+  tipos: Array<{title: string, avatar: string, tipo: TipoJogo}>;
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
               public splashScreen: SplashScreen, 
               private loteria: LoteriaProvider,
-              private tipoJogo: ListaTipoJogoProvider) {
+              private tipoJogo: ListaTipoJogoProvider,
+              public plt: Platform) {
   }
 
   initializeApp() {
@@ -38,9 +38,9 @@ export class MyApp {
     this.initializeApp();
     this.loteria.setConfigJogoPadrao(this.tipoJogo.MegaSena);  
     
-    this.pages = [
-      { title: 'MEGA-SENA', avatar: 'megasena', component: HomePage, tipo: this.tipoJogo.MegaSena},
-      { title: 'LOTOFÁCIL', avatar: 'lotofacil', component: HomePage, tipo: this.tipoJogo.LotoFacil}
+    this.tipos = [
+      { title: 'MEGA-SENA', avatar: 'megasena', tipo: this.tipoJogo.MegaSena},
+      { title: 'LOTOFÁCIL', avatar: 'lotofacil', tipo: this.tipoJogo.LotoFacil}
     ];
   }
 
@@ -48,8 +48,8 @@ export class MyApp {
     //implementar
   }
 
-  openPage(page) {
-    this.loteria.setConfigJogoPadrao(page.tipo);
-    this.nav.setRoot(TabsPage);
+  changeLoto(tipoJogo) {
+    this.loteria.setConfigJogoPadrao(tipoJogo.tipo);
+    this.nav.setRoot(HomePage);
   }
 }

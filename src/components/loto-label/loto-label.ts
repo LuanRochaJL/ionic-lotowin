@@ -7,7 +7,7 @@ import { LoteriaProvider } from "../../providers/loteria";
 })
 export class LotoLabelComponent {
 
-  @Input() lblValor: {lblText: string, classe: string};
+  @Input() lblValor;
 
   constructor(private loteria: LoteriaProvider) {
   }

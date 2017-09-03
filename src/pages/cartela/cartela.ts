@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { AlertController, NavController } from 'ionic-angular';
 import { LoteriaProvider } from "../../providers/loteria";
 
 @Component({
@@ -9,7 +9,9 @@ import { LoteriaProvider } from "../../providers/loteria";
 export class CartelaPage {
   cartela: number[][];
 
-  constructor(public navCtrl: NavController, private loteria: LoteriaProvider) {
+  constructor(public navCtrl: NavController, 
+              private loteria: LoteriaProvider,
+              private alertCtrl: AlertController) {
   }
 
   ngOnInit(){
@@ -22,12 +24,47 @@ export class CartelaPage {
     }
   }
 
+  doCheckbox() {
+    debugger
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Selecione os números!');
+    for(let num = 1;num <= 60;num++){
+      alert.addInput({
+        type: 'checkbox',
+        label: num.toString(),
+        value: num.toString(),
+        checked: this.loteria.configjogo.escolhidos.indexOf(num) > -1
+      });
+    }
+
+    alert.addButton('Cancelar');
+    alert.addButton({
+      text: 'Ok',
+      handler: (data: number[]) => {
+        console.log('Checkbox data:', data);
+        this.loteria.configjogo.escolhidos = [];
+        for (let num of data){
+          this.loteria.configjogo.escolhidos.push(+num);
+        }
+      }
+    });
+
+    alert.present();
+  }
+
+  excluirNumero(chip: number) {
+    debugger
+    let index = this.loteria.configjogo.escolhidos.indexOf(+chip);
+    if (index > -1) {
+      this.loteria.configjogo.escolhidos.splice(index, 1);
+    }
+  }
+
   SetNumCartela(evento){
     debugger
-    let num = evento.target.attributes.id.nodeValue;
+    let num = +evento.target.attributes.id.nodeValue;
     let indexEscolhido = this.loteria.configjogo.escolhidos.indexOf(num);
     let indexExcluido = this.loteria.configjogo.excluidos.indexOf(num);
-    
     
     if(indexEscolhido > -1){
       this.loteria.configjogo.escolhidos.splice(indexEscolhido, 1);
