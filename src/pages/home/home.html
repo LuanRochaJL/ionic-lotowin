@@ -24,17 +24,38 @@
   <loto-chkbox [chkValor]="chk[indice.chk.repetir]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
   <loto-chkbox [chkValor]="chk[indice.chk.sequencia]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
   
-  <button ion-item (click)="listaNumeros()">
+  <button ion-item (click)="listaNumeros(indice.cartela.escolhidos)">
     <loto-label lblValor="Números selecionados"></loto-label>
+    <ion-icon name="grid" item-end color="disabled"></ion-icon>
   </button>
   <div>
-      <loto-chip *ngFor="let numero of loteria.configjogo.escolhidos" chipValor="{{ numero }}" (metodoSet)="excluirNumero($event)"></loto-chip>
+      <loto-chip *ngFor="let numero of loteria.configjogo.escolhidos" chipValor="{{ numero }}" (metodoSet)="excluirNumero($event, indice.cartela.escolhidos)"></loto-chip>
+  </div>
+
+  <button ion-item (click)="listaNumeros(indice.cartela.excluidos)">
+    <loto-label lblValor="Números excluídos"></loto-label>
+    <ion-icon name="grid" item-end color="disabled"></ion-icon>
+  </button>
+  <div>
+      <loto-chip *ngFor="let numero of loteria.configjogo.excluidos" chipValor="{{ numero }}" (metodoSet)="excluirNumero($event, indice.cartela.excluidos)"></loto-chip>
   </div>
 
 
   <button ion-button color="{{ loteria.tipoJogo.getClasse() }}" (click)="GetAposta()">
     Sortear números
   </button>
-  <lista-jogo [jogos]="jogos"></lista-jogo>
+  <ion-card *ngFor="let jogo of jogos; let i = index">
+    <ion-card-header  >
+      <ion-grid>
+        <ion-row>
+          <ion-col col-1 *ngFor="let coluna of jogos[i]" >
+            <div class="coluna cartela-escolhido-{{ loteria.tipoJogo.getClasse() }}">
+              {{ coluna }}
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+  </ion-card>
   
 </ion-content>

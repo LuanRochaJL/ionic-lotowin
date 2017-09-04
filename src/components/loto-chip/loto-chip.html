@@ -1,4 +1,4 @@
-<ion-chip color="megasena">
+<ion-chip color="{{loteria.tipoJogo.getClasse()}}">
   <ion-label>{{ chipValor }}</ion-label>
   <button ion-button clear color="light" (click)="delChip(chipValor)">
     <ion-icon name="close-circle"></ion-icon>

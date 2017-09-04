@@ -10,11 +10,11 @@ import { adMobProvider } from './../../providers/adMob';
 })
 export class HomePage {
   private indice: {rngQtde:{jogo: number,numero: number},
-                   chk:{repetir: number,sequencia: number}};
+                   chk:{repetir: number,sequencia: number},
+                   cartela:{escolhidos: boolean,excluidos: boolean}};
   private jogos: number[][];
   private rngQtde: Array<{lblValor: string, classe: string, qtdeMin: number, qtdeMax: number, qtde: number}>;
   private chk: Array<{lblValor: string, classe: string}>;
-  cartela: number[][];
 
   constructor(public navCtrl: NavController, 
               private loteria: LoteriaProvider, 
@@ -24,7 +24,8 @@ export class HomePage {
 
   ngOnInit(){
     this.indice = {rngQtde:{jogo:0,numero:1},
-                   chk:{repetir:0,sequencia:1}};
+                   chk:{repetir:0,sequencia:1},
+                   cartela:{escolhidos: true,excluidos: false}};
     this.rngQtde = [
         { lblValor: 'Qtde. jogos', classe: this.loteria.tipoJogo.getClasse(), qtdeMin: this.loteria.tipoJogo.getQtdJogoMin(), 
           qtdeMax: this.loteria.tipoJogo.getQtdJogoMax(), qtde: this.loteria.tipoJogo.getQtdJogoMin()},
@@ -32,40 +33,40 @@ export class HomePage {
           qtdeMax: this.loteria.tipoJogo.getQtdNumMax(), qtde: this.loteria.tipoJogo.getQtdNumMin()}
       ];
     this.chk = [
-          {lblValor: 'Não Repetir n° entre jogos', classe: this.loteria.tipoJogo.getClasse()},
-          {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()}
+        {lblValor: 'Não Repetir n° entre jogos', classe: this.loteria.tipoJogo.getClasse()},
+        {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()}
       ];
-
-    this.cartela = new Array(6);
-    for(let linha = 0;linha<6;linha++){
-        this.cartela[linha] = new Array(10);
-      for(let coluna = 0;coluna < 10;coluna++){
-        this.cartela[linha][coluna] = (coluna+1)+(linha*10);
-      }
-    }
   }
 
-  listaNumeros() {
-    debugger
+  listaNumeros(tipo: boolean) {
+    let numeros = tipo ? this.loteria.configjogo.escolhidos : this.loteria.configjogo.excluidos;
+    let numOcultar = tipo ? this.loteria.configjogo.excluidos : this.loteria.configjogo.escolhidos;
     let alert = this.alertCtrl.create();
     alert.setTitle('Selecione os números!');
-    for(let num = 1;num <= 60;num++){
-      alert.addInput({
-        type: 'checkbox',
-        label: num.toString(),
-        value: num.toString(),
-        checked: this.loteria.configjogo.escolhidos.indexOf(num) > -1
-      });
+    
+    for(let num = 1;num <= this.loteria.tipoJogo.getQtdNumMax();num++){
+      if(!(numOcultar.indexOf(num) > -1)){
+        alert.addInput({
+          type: 'checkbox',
+          label: num.toString(),
+          value: num.toString(),
+          checked: numeros.indexOf(num) > -1
+        });
+      }
     }
 
     alert.addButton('Cancelar');
     alert.addButton({
       text: 'Ok',
-      handler: (data: number[]) => {
-        console.log('Checkbox data:', data);
-        this.loteria.configjogo.escolhidos = [];
+      handler: (data) => {
+        numeros = [];
         for (let num of data){
-          this.loteria.configjogo.escolhidos.push(+num);
+          numeros.push(+num);
+        }
+        if(tipo){
+          this.loteria.configjogo.escolhidos = numeros;
+        }else{
+          this.loteria.configjogo.excluidos = numeros;
         }
       }
     });
@@ -73,11 +74,17 @@ export class HomePage {
     alert.present();
   }
 
-  excluirNumero(chip: number) {
-    debugger
-    let index = this.loteria.configjogo.escolhidos.indexOf(+chip);
-    if (index > -1) {
-      this.loteria.configjogo.escolhidos.splice(index, 1);
+  excluirNumero(chip: number, tipo: boolean) {
+    if(tipo){
+      let index = this.loteria.configjogo.escolhidos.indexOf(+chip);
+      if (index > -1) {
+        this.loteria.configjogo.escolhidos.splice(index, 1);
+      }
+    }else{
+      let index = this.loteria.configjogo.excluidos.indexOf(+chip);
+      if (index > -1) {
+        this.loteria.configjogo.excluidos.splice(index, 1);
+      }
     }
   }
 
