@@ -8,6 +8,7 @@ import { TabsPage } from './../pages/tabs/tabs';
 import { TipoJogo } from './../providers/tipo-jogo';
 import { ListaTipoJogoProvider } from './../providers/lista-tipo-jogo';
 import { LoteriaProvider } from "../providers/loteria";
+import { ResultadoPage } from "../pages/resultado/resultado";
 
 @Component({
   templateUrl: 'app.html'

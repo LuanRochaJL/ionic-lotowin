@@ -6,12 +6,14 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ComponentsModule } from "../components/components.module";
 import { CartelaPage } from "./cartela/cartela";
+import { ResultadoPage } from "./resultado/resultado";
 
 @NgModule({
   declarations: [
     HomePage,
     TabsPage,
-    CartelaPage
+    CartelaPage,
+    ResultadoPage
   ],
   imports: [
     IonicModule.forRoot(HomePage),
@@ -21,12 +23,14 @@ import { CartelaPage } from "./cartela/cartela";
   exports: [
     HomePage,
     TabsPage,
-    CartelaPage
+    CartelaPage,
+    ResultadoPage
   ],
   entryComponents: [
     HomePage,
     TabsPage,
-    CartelaPage
+    CartelaPage,
+    ResultadoPage
   ]
 })
 export class PagesModule {}

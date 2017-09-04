@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { ResultadoPage } from './../resultado/resultado';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, NavController, AlertController } from 'ionic-angular';
 
 import { LoteriaProvider } from './../../providers/loteria';
 import { adMobProvider } from './../../providers/adMob';
@@ -89,11 +90,13 @@ export class HomePage {
   }
 
   GetAposta(){
-    this.jogos = this.loteria.GetAposta();
+
+    /*this.jogos = this.loteria.GetAposta();
     if(this.loteria.configjogo.qtdeJogos == 1){
       this.adMob.showBanner();
     }else{
       this.adMob.launchInterstitial();
-    }
+    }*/
+    this.navCtrl.push(ResultadoPage);
   }
 }
