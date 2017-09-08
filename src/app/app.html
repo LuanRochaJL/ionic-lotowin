@@ -2,7 +2,7 @@
     <ion-header>
         <ion-toolbar>
             <ion-avatar item-start>
-                <img src="../../assets/img/loteria.png">
+                <img src="{{ page.imgOrigem }}loteria.png">
             </ion-avatar>
         </ion-toolbar>
     </ion-header>
@@ -11,7 +11,7 @@
         <ion-list>
         <button menuClose ion-item  *ngFor="let tipoJogo of tipos" (click)="changeLoto(tipoJogo)">
             <ion-avatar item-start>
-                <img src="../../assets/img/{{tipoJogo.avatar}}.png">
+                <img src="{{ page.imgOrigem }}{{tipoJogo.avatar}}.png">
             </ion-avatar>
             <span class="{{tipoJogo.avatar}}">{{tipoJogo.title}}</span>
         </button>

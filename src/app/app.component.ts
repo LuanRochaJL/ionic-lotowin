@@ -1,14 +1,14 @@
-import { HomePage } from './../pages/home/home';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabsPage } from './../pages/tabs/tabs';
+import { HomePage } from './../pages/home/home';
+
 import { TipoJogo } from './../providers/tipo-jogo';
 import { ListaTipoJogoProvider } from './../providers/lista-tipo-jogo';
 import { LoteriaProvider } from "../providers/loteria";
-import { ResultadoPage } from "../pages/resultado/resultado";
+import { Utilities } from './../util/utilities';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,6 +18,7 @@ export class MyApp {
 
   rootPage:any = HomePage;
 
+  page: {imgOrigem: string};
   tipos: Array<{title: string, avatar: string, tipo: TipoJogo}>;
 
   constructor(public platform: Platform, 
@@ -25,7 +26,7 @@ export class MyApp {
               public splashScreen: SplashScreen, 
               private loteria: LoteriaProvider,
               private tipoJogo: ListaTipoJogoProvider,
-              public plt: Platform) {
+              private util: Utilities) {
   }
 
   initializeApp() {
@@ -37,8 +38,9 @@ export class MyApp {
 
   ngOnInit(){
     this.initializeApp();
+    this.page = {imgOrigem: this.util.imgOrigem(this.platform)}
     this.loteria.setConfigJogoPadrao(this.tipoJogo.MegaSena);  
-    
+  
     this.tipos = [
       { title: 'MEGA-SENA', avatar: 'megasena', tipo: this.tipoJogo.MegaSena},
       { title: 'LOTOFÁCIL', avatar: 'lotofacil', tipo: this.tipoJogo.LotoFacil}

@@ -12,6 +12,7 @@ import { LoteriaProvider } from './../providers/loteria';
 import { ListaTipoJogoProvider } from "../providers/lista-tipo-jogo";
 import { ComponentsModule } from "../components/components.module";
 import { adMobProvider } from "../providers/adMob";
+import { Utilities } from '../util/utilities';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { adMobProvider } from "../providers/adMob";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoteriaProvider,
     ListaTipoJogoProvider,
-    adMobProvider
+    adMobProvider,
+    Utilities
   ]
 })
 export class AppModule {}

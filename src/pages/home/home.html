@@ -1,8 +1,10 @@
 <ion-header>
   <ion-navbar>
+
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+
     <div class="item-block">
       <ion-avatar item-start>
           <img src="../../assets/img/{{loteria.tipoJogo.getClasse()}}.png">
@@ -10,11 +12,8 @@
       <ion-title item-start>
         <ion-label class="{{loteria.tipoJogo.getClasse()}}">{{loteria.tipoJogo.getModalidade()}}</ion-label>
       </ion-title>
-      <div item-end>
-          <ion-label item-end class="{{loteria.tipoJogo.getClasse()}}">Completo</ion-label>
-          <ion-toggle item-end [(ngModel)]="expert" color="{{loteria.tipoJogo.getClasse()}}"></ion-toggle>
-      </div>
     </div>
+    
   </ion-navbar>
 </ion-header>
 
