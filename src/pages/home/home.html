@@ -21,8 +21,9 @@
 <ion-content padding>
   <loto-range [rngValor]="rngQtde[indice.rngQtde.jogo]" (metodoSet)="loteria.configjogo.setQtdeJogos($event)"></loto-range>
   <loto-range [rngValor]="rngQtde[indice.rngQtde.numero]" (metodoSet)="loteria.configjogo.setQtdeNumeros($event)"></loto-range>
+
   <loto-chkbox [chkValor]="chk[indice.chk.repetir]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
-  <loto-chkbox [chkValor]="chk[indice.chk.sequencia]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
+  <loto-chkbox [chkValor]="chk[indice.chk.sequencia]" (metodoSet)="loteria.configjogo.setNoSequencia($event)"></loto-chkbox>
   
   <button ion-item (click)="listaNumeros(indice.cartela.escolhidos)">
     <loto-label lblValor="Números selecionados"></loto-label>

@@ -12,7 +12,7 @@ export class LoteriaProvider{
          [6,7,8,9,10,16,17,18,19,20,26,27,28,29,30],
          [31,32,33,34,35,41,42,43,44,45,51,52,53,54,55],
          [36,37,38,39,40,46,47,48,49,50,56,57,58,59,60]];
-    private checkQuadrante: boolean[] = [false, false, false, false];
+    private checkQuadrante: boolean[];
     private vNum: number = 0;
     public tipoJogo: TipoJogo;
 
@@ -26,9 +26,6 @@ export class LoteriaProvider{
     public setConfigJogoPadrao(pTipoJogo: TipoJogo) {
         this.tipoJogo = pTipoJogo;
         this.configjogo = new ConfiguracaoJogo();
-        //this.configjogo.escolhidos = new Array(1,3,5);
-        //this.configjogo.excluidos = new Array();
-        
         this.configjogo.qtdeJogos = pTipoJogo.getQtdJogoMin();
         this.configjogo.qtdeNumeros = pTipoJogo.getQtdNumMin();
     }
@@ -36,20 +33,20 @@ export class LoteriaProvider{
     private ValidaQuadrante(): boolean{
         let check: boolean = false;
 
-        if (!this.checkQuadrante[0]){
-            check = this.chkQuadrante[0].indexOf(this.vNum) > -1;
+        if (this.checkQuadrante[0]){
+            check = !(this.chkQuadrante[0].indexOf(this.vNum) > -1);
             this.checkQuadrante[0] = check;
         }
-        else if(!this.checkQuadrante[1]){
-            check = this.chkQuadrante[1].indexOf(this.vNum) > -1;
+        else if(this.checkQuadrante[1]){
+            check = !(this.chkQuadrante[1].indexOf(this.vNum) > -1);
             this.checkQuadrante[1] = check;
         }
-        else if(!this.checkQuadrante[2]){
-            check = this.chkQuadrante[2].indexOf(this.vNum) > -1;
+        else if(this.checkQuadrante[2]){
+            check = !(this.chkQuadrante[2].indexOf(this.vNum) > -1);
             this.checkQuadrante[2] = check;
         }
-        else if(!this.checkQuadrante[3]){
-            check = this.chkQuadrante[3].indexOf(this.vNum) > -1;
+        else if(this.checkQuadrante[3]){
+            check = !(this.chkQuadrante[3].indexOf(this.vNum) > -1);
             this.checkQuadrante[3] = check;
         };
         return check;
@@ -75,7 +72,7 @@ export class LoteriaProvider{
 				check = true;
 			}
 			else{
-				check = false;//this.ValidaQuadrante();
+				check = this.ValidaQuadrante();
 			}
 		};
 		return check;
@@ -98,6 +95,7 @@ export class LoteriaProvider{
         else{
             for(let jogo = 0; jogo < this.configjogo.qtdeJogos; jogo++){
                 debugger
+                this.checkQuadrante = [true, true, true, true];
                 aposta.jogos[jogo] = new Array(this.configjogo.qtdeNumeros);
                 for(let i = 0; i < this.configjogo.qtdeNumeros; i++){
                     do{
