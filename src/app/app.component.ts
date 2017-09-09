@@ -19,7 +19,7 @@ export class MyApp {
   rootPage:any = HomePage;
 
   page: {imgOrigem: string};
-  tipos: Array<{title: string, avatar: string, tipo: TipoJogo}>;
+  tipos: TipoJogo[] = [this.tipoJogo.MegaSena, this.tipoJogo.LotoFacil];
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
@@ -40,11 +40,6 @@ export class MyApp {
     this.initializeApp();
     this.page = {imgOrigem: this.util.imgOrigem(this.platform)}
     this.loteria.setConfigJogoPadrao(this.tipoJogo.MegaSena);  
-  
-    this.tipos = [
-      { title: 'MEGA-SENA', avatar: 'megasena', tipo: this.tipoJogo.MegaSena},
-      { title: 'LOTOFÁCIL', avatar: 'lotofacil', tipo: this.tipoJogo.LotoFacil}
-    ];
   }
 
   ngOnDestroy(){
@@ -52,7 +47,7 @@ export class MyApp {
   }
 
   changeLoto(tipoJogo) {
-    this.loteria.setConfigJogoPadrao(tipoJogo.tipo);
+    this.loteria.setConfigJogoPadrao(tipoJogo);
     this.nav.setRoot(HomePage);
   }
 }

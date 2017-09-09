@@ -14,20 +14,6 @@ export class LotoChkboxComponent {
   }
 
   setChk(){
-    debugger
     this.metodoSet.emit(this.chk);
-    /*switch(this.chkValor.campo) { 
-      case 'noRepetirNumero': { 
-         this.loteria.configjogo.noRepetirNumero = _chk;
-         break; 
-      }
-      case 'noSequencia': { 
-        this.loteria.configjogo.noSequencia = _chk;
-        break; 
-      }
-      default: { 
-         break; 
-      } 
-    } */
   }
 }

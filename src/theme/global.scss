@@ -27,7 +27,8 @@ loto-chip{
         font-weight: bold;   
     }
 
-    .cartela-escolhido-#{$loteria}{
+    .num-jogo-#{$loteria}{
+        @extend .coluna;
         background-color: map-get($tipo, color);
         color: white;
     }
@@ -35,9 +36,5 @@ loto-chip{
     .cartela-excluido-#{$loteria}{
         background-color: #dddddd;
         text-decoration:line-through;
-    }
-
-    .badge-ios-#{$loteria}{
-        background-color: map-get($tipo, color);
     }
 }

@@ -1,4 +1,5 @@
 <ion-menu [content]="content" persistent="true">
+
     <ion-header>
         <ion-toolbar>
             <ion-avatar item-start>
@@ -9,13 +10,14 @@
     
     <ion-content>
         <ion-list>
-        <button menuClose ion-item  *ngFor="let tipoJogo of tipos" (click)="changeLoto(tipoJogo)">
+        <button menuClose ion-item  *ngFor="let tipo of tipos" (click)="changeLoto(tipo)">
             <ion-avatar item-start>
-                <img src="{{ page.imgOrigem }}{{tipoJogo.avatar}}.png">
+                <img src="{{ page.imgOrigem }}{{ tipo.getClasse() }}.png">
             </ion-avatar>
-            <span class="{{tipoJogo.avatar}}">{{tipoJogo.title}}</span>
+            <span class="{{ tipo.getClasse() }}">{{tipo.getModalidade()}}</span>
         </button>
         </ion-list>
     </ion-content>
+
 </ion-menu>
 <ion-nav [root]="rootPage"  #content swipeBackEnabled="false"></ion-nav>

@@ -11,7 +11,9 @@ export class ResultadoPage {
 
   private jogos: number[][];
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loteria: LoteriaProvider,
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private loteria: LoteriaProvider,
               private adMob: adMobProvider) {
   }
 
@@ -26,9 +28,6 @@ export class ResultadoPage {
 
   ngOnInit(){
     this.GetAposta();
-  }
-
-  ionViewDidLoad() {
   }
 
 }
