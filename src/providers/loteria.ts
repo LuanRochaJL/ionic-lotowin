@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Jogo } from './jogo';
 import { TipoJogo } from './tipo-jogo';
 import { ConfiguracaoJogo } from './configuracao-jogo';
 
@@ -15,6 +14,7 @@ export class LoteriaProvider{
     private checkQuadrante: boolean[];
     private vNum: number = 0;
     public tipoJogo: TipoJogo;
+    private jogos: number[][];
 
     constructor(){
     }
@@ -83,20 +83,18 @@ export class LoteriaProvider{
     }
 
     GetAposta(): number[][]{
-        let aposta = new Jogo();
-        
-        aposta.jogos = new Array(this.configjogo.qtdeJogos);
+        this.jogos = new Array(this.configjogo.qtdeJogos);
         if((this.configjogo.excluidos.length) + this.configjogo.qtdeNumeros > 60){
-            aposta.critica = "Quantidade de números insuficiente para jogar!";
+            //aposta.critica = "Quantidade de números insuficiente para jogar!";
         }
         else if((this.configjogo.escolhidos.length) > this.configjogo.qtdeNumeros){
-            aposta.critica = "Quantidade de números escolhidos para jogar excede a quantidade de número definida por jogo!";
+            //aposta.critica = "Quantidade de números escolhidos para jogar excede a quantidade de número definida por jogo!";
         }
         else{
             for(let jogo = 0; jogo < this.configjogo.qtdeJogos; jogo++){
                 debugger
                 this.checkQuadrante = [true, true, true, true];
-                aposta.jogos[jogo] = new Array(this.configjogo.qtdeNumeros);
+                this.jogos[jogo] = new Array(this.configjogo.qtdeNumeros);
                 for(let i = 0; i < this.configjogo.qtdeNumeros; i++){
                     do{
                         if((this.configjogo.escolhidos.length > 0) && (i <= this.configjogo.escolhidos.length - 1)){
@@ -105,18 +103,18 @@ export class LoteriaProvider{
                         else{
                             this.vNum = this.getRandom(1,60);
                         }
-                    }while(this.ValidaNumero(aposta.jogos,jogo));
+                    }while(this.ValidaNumero(this.jogos,jogo));
 
-                    aposta.jogos[jogo][i] = this.vNum;
-                    aposta.jogo += this.vNum + " - ";
+                    this.jogos[jogo][i] = this.vNum;
+                    //this.jogos += this.vNum + " - ";
                     
                 }
-                aposta.jogos[jogo].sort(this.compararNumeros);
-                aposta.jogo += "\n";
+                this.jogos[jogo].sort(this.compararNumeros);
+                //aposta.jogo += "\n";
             }
-            aposta.valido = true;
+            //aposta.valido = true;
         };
         
-        return aposta.jogos;
+        return this.jogos;
     }
 }

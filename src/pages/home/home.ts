@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, Platform } from 'ionic-angular';
 
 import { LoteriaProvider } from './../../providers/loteria';
 import { ResultadoPage } from './../resultado/resultado';
+import { Utilities } from "../../util/utilities";
 
 @Component({
   selector: 'page-home',
@@ -16,10 +17,13 @@ export class HomePage {
                   };
   private rngQtde: Array<{lblValor: string, classe: string, qtdeMin: number, qtdeMax: number, qtde: number}>;
   private chk: Array<{lblValor: string, classe: string}>;
+  private page: {imgOrigem: string};
 
-  constructor(public navCtrl: NavController, 
+  constructor(public platform: Platform,
+              public navCtrl: NavController, 
               private loteria: LoteriaProvider, 
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private util: Utilities) {
   }
 
   ngOnInit(){
@@ -39,13 +43,16 @@ export class HomePage {
         {lblValor: 'Não Repetir n° entre jogos', classe: this.loteria.tipoJogo.getClasse()},
         {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()}
       ];
+
+    this.page = {imgOrigem: this.util.imgOrigem(this.platform)}
   }
 
   listaNumeros(tipo: boolean) {
     let numeros = tipo ? this.loteria.configjogo.escolhidos : this.loteria.configjogo.excluidos;
     let numOcultar = tipo ? this.loteria.configjogo.excluidos : this.loteria.configjogo.escolhidos;
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Selecione os números!');
+    let alert = this.alertCtrl.create({
+      title: 'Selecione até '+this.loteria.configjogo.qtdeNumeros+'  números!'
+    });
     
     for(let num = 1;num <= this.loteria.tipoJogo.getQtdNum();num++){
       if(!(numOcultar.indexOf(num) > -1)){

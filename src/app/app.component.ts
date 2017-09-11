@@ -18,8 +18,8 @@ export class MyApp {
 
   rootPage:any = HomePage;
 
-  page: {imgOrigem: string};
-  tipos: TipoJogo[] = [this.tipoJogo.MegaSena, this.tipoJogo.LotoFacil];
+  private page: {imgOrigem: string};
+  private tipos: TipoJogo[] = [this.tipoJogo.MegaSena, this.tipoJogo.LotoFacil];
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
