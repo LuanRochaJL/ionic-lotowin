@@ -106,13 +106,10 @@ export class LoteriaProvider{
                     }while(this.ValidaNumero(this.jogos,jogo));
 
                     this.jogos[jogo][i] = this.vNum;
-                    //this.jogos += this.vNum + " - ";
                     
                 }
                 this.jogos[jogo].sort(this.compararNumeros);
-                //aposta.jogo += "\n";
             }
-            //aposta.valido = true;
         };
         
         return this.jogos;

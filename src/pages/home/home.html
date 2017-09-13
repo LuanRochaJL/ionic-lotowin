@@ -24,7 +24,7 @@
   <loto-chkbox [chkValor]="chk[indice.chk.repetir]" (metodoSet)="loteria.configjogo.setNoRepetirNumero($event)"></loto-chkbox>
   <loto-chkbox [chkValor]="chk[indice.chk.sequencia]" (metodoSet)="loteria.configjogo.setNoSequencia($event)"></loto-chkbox>
   
-  <button ion-item (click)="listaNumeros(indice.cartela.escolhidos)">
+  <button ion-item (click)="listaNumeros(indice.cartela.escolhidos)" [disabled]="loteria.configjogo.noRepetirNumero">
     <loto-label lblValor="Números selecionados"></loto-label>
     <ion-icon name="grid" item-end color="disabled"></ion-icon>
   </button>
