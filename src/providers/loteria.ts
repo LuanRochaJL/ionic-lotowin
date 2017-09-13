@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+
 import { TipoJogo } from './tipo-jogo';
 import { ConfiguracaoJogo } from './configuracao-jogo';
+import { Utilities } from '../util/utilities';
 
 
 @Injectable()
@@ -16,12 +18,8 @@ export class LoteriaProvider{
     public tipoJogo: TipoJogo;
     private jogos: number[][];
 
-    constructor(){
+    constructor(private util: Utilities){
     }
-    
-    getRandom(min, max) {
-        return Math.floor(Math.random() * ((max+1) - min) + min);
-    } 
 
     public setConfigJogoPadrao(pTipoJogo: TipoJogo) {
         this.tipoJogo = pTipoJogo;
@@ -78,10 +76,6 @@ export class LoteriaProvider{
 		return check;
     }
 
-    compararNumeros(a, b) {
-        return a - b;
-    }
-
     GetAposta(): number[][]{
         this.jogos = new Array(this.configjogo.qtdeJogos);
         if((this.configjogo.excluidos.length) + this.configjogo.qtdeNumeros > 60){
@@ -101,14 +95,14 @@ export class LoteriaProvider{
                             this.vNum = this.configjogo.escolhidos[i];
                         }
                         else{
-                            this.vNum = this.getRandom(1,60);
+                            this.vNum = this.util.getRandom(1,60);
                         }
                     }while(this.ValidaNumero(this.jogos,jogo));
 
                     this.jogos[jogo][i] = this.vNum;
                     
                 }
-                this.jogos[jogo].sort(this.compararNumeros);
+                this.jogos[jogo].sort(this.util.compararNumeros);
             }
         };
         

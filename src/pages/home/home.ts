@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, Platform } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 
 import { LoteriaProvider } from './../../providers/loteria';
 import { ResultadoPage } from './../resultado/resultado';
@@ -13,23 +13,25 @@ export class HomePage {
   private indice: {
                     rngQtde:{jogo: number,numero: number},
                     chk:{repetir: number,sequencia: number},
-                    cartela:{escolhidos: boolean,excluidos: boolean}
+                    cartela:{escolhidos: number,excluidos: number}
+                    tipoCartela:{escolhidos: boolean,excluidos: boolean}
                   };
   private rngQtde: Array<{lblValor: string, classe: string, qtdeMin: number, qtdeMax: number, qtde: number}>;
   private chk: Array<{lblValor: string, classe: string}>;
+  private cartela: Array<{lblValor: string, index: boolean, disable: boolean}>;
   private page: {imgOrigem: string};
 
   constructor(public platform: Platform,
               public navCtrl: NavController, 
               private loteria: LoteriaProvider, 
-              private alertCtrl: AlertController,
               private util: Utilities) {
   }
 
   ngOnInit(){
     this.indice = {rngQtde:{jogo:0,numero:1},
                    chk:{repetir:0,sequencia:1},
-                   cartela:{escolhidos: true,excluidos: false}
+                   cartela:{escolhidos: 0,excluidos: 1},
+                   tipoCartela:{escolhidos: true,excluidos: false}
                   };
 
     this.rngQtde = [
@@ -44,44 +46,13 @@ export class HomePage {
         {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()}
       ];
 
+    let disable = this.loteria.configjogo.noRepetirNumero || this.loteria.configjogo.noSequencia;
+    this.cartela = [
+      { lblValor: 'Números selecionados', index: this.indice.tipoCartela.escolhidos, disable: disable},
+      { lblValor: 'Números excluídos', index: this.indice.tipoCartela.excluidos, disable: disable}
+    ];
+
     this.page = {imgOrigem: this.util.imgOrigem(this.platform)}
-  }
-
-  listaNumeros(tipo: boolean) {
-    let numeros = tipo ? this.loteria.configjogo.escolhidos : this.loteria.configjogo.excluidos;
-    let numOcultar = tipo ? this.loteria.configjogo.excluidos : this.loteria.configjogo.escolhidos;
-    let alert = this.alertCtrl.create({
-      title: 'Selecione até '+this.loteria.configjogo.qtdeNumeros+'  números!'
-    });
-    
-    for(let num = 1;num <= this.loteria.tipoJogo.getQtdNum();num++){
-      if(!(numOcultar.indexOf(num) > -1)){
-        alert.addInput({
-          type: 'checkbox',
-          label: num.toString(),
-          value: num.toString(),
-          checked: numeros.indexOf(num) > -1
-        });
-      }
-    }
-
-    alert.addButton('Cancelar');
-    alert.addButton({
-      text: 'Ok',
-      handler: (data) => {
-        numeros = [];
-        for (let num of data){
-          numeros.push(+num);
-        }
-        if(tipo){
-          this.loteria.configjogo.escolhidos = numeros;
-        }else{
-          this.loteria.configjogo.excluidos = numeros;
-        }
-      }
-    });
-
-    alert.present();
   }
 
   excluirNumero(chip: number, tipo: boolean) {

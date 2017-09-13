@@ -33,10 +33,10 @@ import { Utilities } from '../util/utilities';
     SplashScreen,
     AdMobFree,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Utilities,
     LoteriaProvider,
     ListaTipoJogoProvider,
     adMobProvider,
-    Utilities
   ]
 })
 export class AppModule {}
