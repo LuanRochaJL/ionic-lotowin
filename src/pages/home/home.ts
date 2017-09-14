@@ -18,7 +18,7 @@ export class HomePage {
                   };
   private rngQtde: Array<{lblValor: string, classe: string, qtdeMin: number, qtdeMax: number, qtde: number}>;
   private chk: Array<{lblValor: string, classe: string}>;
-  private cartela: Array<{lblValor: string, index: boolean, disable: boolean}>;
+  private cartela: Array<{lblValor: string, index: boolean}>;
   private page: {imgOrigem: string};
 
   constructor(public platform: Platform,
@@ -46,10 +46,9 @@ export class HomePage {
         {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()}
       ];
 
-    let disable = this.loteria.configjogo.noRepetirNumero || this.loteria.configjogo.noSequencia;
     this.cartela = [
-      { lblValor: 'Números selecionados', index: this.indice.tipoCartela.escolhidos, disable: disable},
-      { lblValor: 'Números excluídos', index: this.indice.tipoCartela.excluidos, disable: disable}
+      { lblValor: 'Números selecionados', index: this.indice.tipoCartela.escolhidos},
+      { lblValor: 'Números excluídos', index: this.indice.tipoCartela.excluidos}
     ];
 
     this.page = {imgOrigem: this.util.imgOrigem(this.platform)}

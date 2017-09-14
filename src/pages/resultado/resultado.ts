@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LoteriaProvider } from "../../providers/loteria";
 import { adMobProvider } from "../../providers/adMob";
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'page-resultado',
@@ -14,7 +15,8 @@ export class ResultadoPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               private loteria: LoteriaProvider,
-              private adMob: adMobProvider) {
+              private adMob: adMobProvider,
+              private socialSharing: SocialSharing) {
   }
 
   GetAposta(){
@@ -24,6 +26,10 @@ export class ResultadoPage {
     }else{
       this.adMob.launchInterstitial();
     }
+  }
+
+  whatsappShare(){
+    this.socialSharing.shareViaWhatsApp("Teste", null, null); 
   }
 
   ngOnInit(){

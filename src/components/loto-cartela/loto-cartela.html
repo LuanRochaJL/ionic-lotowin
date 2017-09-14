@@ -1,4 +1,4 @@
-<button ion-item (click)="listaNumeros()" [disabled]="cartelaValor.disable">
+<button ion-item (click)="listaNumeros()" [disabled]="loteria.configjogo.noRepetirNumero || loteria.configjogo.noSequencia">
   <loto-label lblValor="{{ cartelaValor.lblValor }}"></loto-label>
   <ion-icon name="grid" item-end color="disabled"></ion-icon>
 </button>

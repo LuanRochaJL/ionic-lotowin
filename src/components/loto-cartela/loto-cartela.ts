@@ -9,7 +9,7 @@ import { LoteriaProvider } from '../../providers/loteria';
 })
 export class LotoCartelaComponent {
 
-  @Input() cartelaValor: {lblValor: string, index: boolean, disable: boolean};
+  @Input() cartelaValor: {lblValor: string, index: boolean};
 
   constructor(private loteria: LoteriaProvider,
               private alertCtrl: AlertController) {
