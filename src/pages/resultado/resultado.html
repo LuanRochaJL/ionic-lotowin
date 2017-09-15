@@ -6,8 +6,8 @@
 
 <ion-content padding>
   
-  <ion-card *ngFor="let jogo of jogos; let i = index">
-    <ion-card-header  >
+  <ion-card *ngFor="let jogo of jogos; let i = index" (click)="selecionarJogo(i)">
+    <ion-card-header class="card-header card-header-md {{ getClasseSelecionado(i) }}">
       <ion-grid>
         <ion-row>
           <ion-col col-1 *ngFor="let coluna of jogos[i]" >

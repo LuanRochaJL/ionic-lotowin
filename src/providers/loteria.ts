@@ -14,6 +14,7 @@ export class LoteriaProvider{
          [31,32,33,34,35,41,42,43,44,45,51,52,53,54,55],
          [36,37,38,39,40,46,47,48,49,50,56,57,58,59,60]];
     private checkQuadrante: boolean[];
+    private checkCartela: boolean;
     private vNum: number = 0;
     public tipoJogo: TipoJogo;
     private jogos: number[][];
@@ -52,7 +53,6 @@ export class LoteriaProvider{
 
     private ValidaNumero(vJogo: number[][], jogo: number): boolean{
 	    let check: boolean = false;
-		debugger
 		if (this.configjogo.noRepetirNumero){
 			for(let i = 0; i < jogo; i++){
 				check = (vJogo[i].indexOf(this.vNum)>-1);
@@ -61,7 +61,7 @@ export class LoteriaProvider{
         
 		if(!check){
 			if((vJogo[jogo].indexOf(this.vNum)>-1) ||
-			   (this.configjogo.excluidos.indexOf(this.vNum)>-1)||
+			   (this.checkCartela && (this.configjogo.excluidos.indexOf(this.vNum)>-1))||
 			   ((this.configjogo.noSequencia) &&
 			    ((vJogo[jogo].indexOf(this.vNum + 10)>-1||
 			     (vJogo[jogo].indexOf(this.vNum - 10))>-1||
@@ -78,6 +78,7 @@ export class LoteriaProvider{
 
     GetAposta(): number[][]{
         this.jogos = new Array(this.configjogo.qtdeJogos);
+        this.checkCartela = !(this.configjogo.noRepetirNumero || this.configjogo.noSequencia); 
         if((this.configjogo.excluidos.length) + this.configjogo.qtdeNumeros > 60){
             //aposta.critica = "Quantidade de números insuficiente para jogar!";
         }
@@ -86,12 +87,11 @@ export class LoteriaProvider{
         }
         else{
             for(let jogo = 0; jogo < this.configjogo.qtdeJogos; jogo++){
-                debugger
                 this.checkQuadrante = [true, true, true, true];
                 this.jogos[jogo] = new Array(this.configjogo.qtdeNumeros);
                 for(let i = 0; i < this.configjogo.qtdeNumeros; i++){
                     do{
-                        if((this.configjogo.escolhidos.length > 0) && (i <= this.configjogo.escolhidos.length - 1)){
+                        if(this.checkCartela && (this.configjogo.escolhidos.length > 0) && (i <= this.configjogo.escolhidos.length - 1)){
                             this.vNum = this.configjogo.escolhidos[i];
                         }
                         else{
