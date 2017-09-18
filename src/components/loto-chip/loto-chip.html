@@ -2,7 +2,7 @@
 
   <ion-label>{{ chipValor }}</ion-label>
 
-  <button ion-button clear color="light" (click)="delChip(chipValor)">
+  <button ion-button clear color="light" (click)="delChip(chipValor)" [disabled]="loteria.configjogo.noRepetirNumero || loteria.configjogo.noSequencia">
     <ion-icon name="close-circle"></ion-icon>
   </button>
   

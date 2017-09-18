@@ -70,13 +70,16 @@ export class LoteriaProvider{
 				check = true;
 			}
 			else{
-				check = this.ValidaQuadrante();
+                if(!this.checkCartela){
+                    check = this.ValidaQuadrante();
+                }
 			}
 		};
 		return check;
     }
 
     GetAposta(): number[][]{
+        debugger
         this.jogos = new Array(this.configjogo.qtdeJogos);
         this.checkCartela = !(this.configjogo.noRepetirNumero || this.configjogo.noSequencia); 
         if((this.configjogo.excluidos.length) + this.configjogo.qtdeNumeros > 60){

@@ -25,17 +25,15 @@
   <loto-chkbox [chkValor]="chk[indice.chk.sequencia]" (metodoSet)="loteria.configjogo.setNoSequencia($event)"></loto-chkbox>
   
   <loto-cartela [cartelaValor]="cartela[indice.cartela.escolhidos]"></loto-cartela>
-  <div>
+  <div >
       <loto-chip *ngFor="let numero of loteria.configjogo.escolhidos" chipValor="{{ numero }}" 
-                 (metodoSet)="excluirNumero($event, indice.cartela.escolhidos)"
-                 [disabled]="loteria.configjogo.noRepetirNumero || loteria.configjogo.noSequencia"></loto-chip>
+                 (metodoSet)="excluirNumero($event, indice.cartela.escolhidos)"></loto-chip>
   </div>
 
   <loto-cartela [cartelaValor]="cartela[indice.cartela.excluidos]"></loto-cartela>
-  <div>
+  <div >
       <loto-chip *ngFor="let numero of loteria.configjogo.excluidos" chipValor="{{ numero }}" 
-                 (metodoSet)="excluirNumero($event, indice.cartela.excluidos)"
-                 [disabled]="loteria.configjogo.noRepetirNumero || loteria.configjogo.noSequencia"></loto-chip>
+                 (metodoSet)="excluirNumero($event, indice.cartela.excluidos)"></loto-chip>
   </div>
 
 
