@@ -5,6 +5,7 @@ export class ConfiguracaoJogo{
     public qtdeNumeros: number;
     public noRepetirNumero: boolean = false;
     public noSequencia: boolean = false;
+    public isQuadrante: boolean = false;
 
     constructor(){   
     }
@@ -23,5 +24,9 @@ export class ConfiguracaoJogo{
 
     setNoSequencia(_noSequencia: boolean){
         this.noSequencia = _noSequencia;
+    }
+
+    setIsQuadrante(_isQuadrante: boolean){
+        this.isQuadrante = _isQuadrante;
     }
 }

@@ -70,7 +70,7 @@ export class LoteriaProvider{
 				check = true;
 			}
 			else{
-                if(!this.checkCartela){
+                if((!this.checkCartela) && this.configjogo.isQuadrante){
                     check = this.ValidaQuadrante();
                 }
 			}

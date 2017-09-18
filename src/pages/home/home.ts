@@ -12,7 +12,7 @@ import { Utilities } from "../../util/utilities";
 export class HomePage {
   private indice: {
                     rngQtde:{jogo: number,numero: number},
-                    chk:{repetir: number,sequencia: number},
+                    chk:{repetir: number,sequencia: number,quandrante: number},
                     cartela:{escolhidos: number,excluidos: number}
                     tipoCartela:{escolhidos: boolean,excluidos: boolean}
                   };
@@ -29,7 +29,7 @@ export class HomePage {
 
   ngOnInit(){
     this.indice = {rngQtde:{jogo:0,numero:1},
-                   chk:{repetir:0,sequencia:1},
+                   chk:{repetir:0,sequencia:1,quandrante:2},
                    cartela:{escolhidos: 0,excluidos: 1},
                    tipoCartela:{escolhidos: true,excluidos: false}
                   };
@@ -43,7 +43,8 @@ export class HomePage {
 
     this.chk = [
         {lblValor: 'Não Repetir n° entre jogos', classe: this.loteria.tipoJogo.getClasse()},
-        {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()}
+        {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()},
+        {lblValor: 'Dividir n° em quadrantes', classe: this.loteria.tipoJogo.getClasse()}
       ];
 
     this.cartela = [
