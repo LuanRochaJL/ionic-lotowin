@@ -9,7 +9,7 @@
 
     <ion-range min="{{ rngValor.qtdeMin }}" max="{{ rngValor.qtdeMax }}" 
             step="1" [(ngModel)]="rngValor.qtde" color="{{ rngValor.classe }}" 
-            (ionChange)="setQtde($event)" debounce="700">
+            (ionChange)="setQtde($event)">
 
     <ion-label range-left class="rngValor.classe">{{ rngValor.qtdeMin }}</ion-label>
     <ion-label range-right class="rngValor.classe">{{ rngValor.qtdeMax }}</ion-label>

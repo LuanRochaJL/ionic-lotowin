@@ -28,13 +28,13 @@
   <loto-cartela [cartelaValor]="cartela[indice.cartela.escolhidos]"></loto-cartela>
   <div >
       <loto-chip *ngFor="let numero of loteria.configjogo.escolhidos" chipValor="{{ numero }}" 
-                 (metodoSet)="excluirNumero($event, indice.cartela.escolhidos)"></loto-chip>
+                 (metodoSet)="excluirNumero($event, indice.tipoCartela.escolhidos)"></loto-chip>
   </div>
 
   <loto-cartela [cartelaValor]="cartela[indice.cartela.excluidos]"></loto-cartela>
   <div >
       <loto-chip *ngFor="let numero of loteria.configjogo.excluidos" chipValor="{{ numero }}" 
-                 (metodoSet)="excluirNumero($event, indice.cartela.excluidos)"></loto-chip>
+                 (metodoSet)="excluirNumero($event, indice.tipoCartela.excluidos)"></loto-chip>
   </div>
 
 
