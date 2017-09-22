@@ -35,21 +35,21 @@ export class HomePage {
                   };
 
     this.rngQtde = [
-        { lblValor: 'Qtde. jogos', classe: this.loteria.tipoJogo.getClasse(), qtdeMin: this.loteria.tipoJogo.getQtdJogoMin(), 
+        { lblValor: 'Jogos', classe: this.loteria.tipoJogo.getClasse(), qtdeMin: this.loteria.tipoJogo.getQtdJogoMin(), 
           qtdeMax: this.loteria.tipoJogo.getQtdJogoMax(), qtde: this.loteria.tipoJogo.getQtdJogoMin()},
-        { lblValor: 'Qtde. números', classe: this.loteria.tipoJogo.getClasse(), qtdeMin: this.loteria.tipoJogo.getQtdNumMin(), 
+        { lblValor: 'Números', classe: this.loteria.tipoJogo.getClasse(), qtdeMin: this.loteria.tipoJogo.getQtdNumMin(), 
           qtdeMax: this.loteria.tipoJogo.getQtdNumMax(), qtde: this.loteria.tipoJogo.getQtdNumMin()}
       ];
 
     this.chk = [
-        {lblValor: 'Não Repetir n° entre jogos', classe: this.loteria.tipoJogo.getClasse()},
+        {lblValor: 'Não Repetir n°', classe: this.loteria.tipoJogo.getClasse()},
         {lblValor: 'Não permitir sequência de número em cruz', classe: this.loteria.tipoJogo.getClasse()},
         {lblValor: 'Dividir n° em quadrantes', classe: this.loteria.tipoJogo.getClasse()}
       ];
 
     this.cartela = [
-      { lblValor: 'Números selecionados', index: this.indice.tipoCartela.escolhidos},
-      { lblValor: 'Números excluídos', index: this.indice.tipoCartela.excluidos}
+      { lblValor: 'Escolher n°', index: this.indice.tipoCartela.escolhidos},
+      { lblValor: 'Excluir n°', index: this.indice.tipoCartela.excluidos}
     ];
 
     this.page = {imgOrigem: this.util.imgOrigem(this.platform)}
