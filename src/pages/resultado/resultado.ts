@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { LoteriaProvider } from "../../providers/loteria";
 import { adMobProvider } from "../../providers/adMob";
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 @Component({
   selector: 'page-resultado',
@@ -12,12 +14,15 @@ export class ResultadoPage {
 
   private jogos: number[][];
   private jogosSelecionados: number[] = [];
+  private fileTransfer: FileTransferObject = this.transfer.create();
   
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               private loteria: LoteriaProvider,
               private adMob: adMobProvider,
-              private socialSharing: SocialSharing) {
+              private socialSharing: SocialSharing,
+              private transfer: FileTransfer,
+              private file: File) {
   }
 
   GetAposta(){
@@ -69,6 +74,21 @@ export class ResultadoPage {
 
   ngOnInit(){
     this.GetAposta();
+  }
+
+  SalvarAposta(){
+    /*const url = 'http://www.example.com/file.pdf';
+    this.fileTransfer.download(url, this.file.externalApplicationStorageDirectory + '/arquivos/jogos.json')
+                     .then((entry) => {
+      alert('download complete: ' + entry.toURL());
+    }, (error) => {
+      // handle error
+    }); */ 
+    this.file.writeFile(this.file.externalApplicationStorageDirectory + '/arquivos/jogos.json', 
+                        'jogos.txt',this.getJogosSelecionados(), {replace: true})
+             .then(entry => alert(entry))
+             .catch(err => alert(err));
+    
   }
 
 }

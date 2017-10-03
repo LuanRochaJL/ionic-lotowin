@@ -20,6 +20,10 @@
     </ion-card-header>
   </ion-card>
 
+  <button ion-button color="{{ loteria.tipoJogo.getClasse() }}" (click)="SalvarAposta()" >
+    Salvar
+  </button>
+
   <ion-fab bottom right>
     <button ion-fab mini color="{{ loteria.tipoJogo.getClasse() }}">
       <ion-icon name="md-share"></ion-icon>
