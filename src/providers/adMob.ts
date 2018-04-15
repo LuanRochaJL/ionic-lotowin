@@ -6,6 +6,10 @@ export class adMobProvider {
     constructor(public admob: AdMobFree) {
     }
 
+    close(){
+        this.admob.banner.remove();
+    }
+
     showBanner(){
         let bannerConfig: AdMobFreeBannerConfig = {
             isTesting: true, // Remove in production
