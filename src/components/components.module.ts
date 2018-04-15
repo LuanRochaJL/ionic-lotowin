@@ -17,7 +17,7 @@ import { LotoCartelaComponent } from './loto-cartela/loto-cartela';
         LotoRangeComponent,
         LotoBadgeComponent,
         LotoChipComponent,
-    LotoCartelaComponent
+        LotoCartelaComponent
     ],
 	imports: [
         CommonModule,
@@ -29,7 +29,7 @@ import { LotoCartelaComponent } from './loto-cartela/loto-cartela';
         LotoRangeComponent,
         LotoBadgeComponent,
         LotoChipComponent,
-    LotoCartelaComponent
+        LotoCartelaComponent
 	]
 })
 export class ComponentsModule {}

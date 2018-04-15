@@ -20,7 +20,7 @@ export class adMobProvider {
         this.admob.banner.config(bannerConfig);
 
         this.admob.banner.prepare().then(() => {
-        }).catch(e => console.log(e));
+        }).catch(/*e => console.log(e)*/);
     }
 
     launchInterstitial(){
@@ -34,6 +34,6 @@ export class adMobProvider {
 
         this.admob.interstitial.prepare().then(() => {
             // success
-        }).catch(e => console.log(e));
+        }).catch(/*e => console.log(e)*/);
     }
 }

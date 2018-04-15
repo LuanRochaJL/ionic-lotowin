@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TipoJogo } from './tipo-jogo';
+import { TipoJogo } from '../model/tipo.jogo';
 
 @Injectable()
 export class ListaTipoJogoProvider{

@@ -3,7 +3,7 @@ import { NavController, Platform } from 'ionic-angular';
 
 import { LoteriaProvider } from './../../providers/loteria';
 import { ResultadoPage } from './../resultado/resultado';
-import { Utilities } from "../../util/utilities";
+import { Utilities } from "../../providers/utilities";
 
 @Component({
   selector: 'page-home',

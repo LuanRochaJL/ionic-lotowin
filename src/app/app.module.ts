@@ -6,15 +6,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { SocialSharing } from '@ionic-native/social-sharing';
-/*import { FileTransfer } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';*/
 
 import { PagesModule } from './../pages/pages.module';
-import { LoteriaProvider } from './../providers/loteria';
-import { ListaTipoJogoProvider } from "../providers/lista-tipo-jogo";
 import { ComponentsModule } from "../components/components.module";
-import { adMobProvider } from "../providers/adMob";
-import { Utilities } from '../util/utilities';
+
+import { LoteriaProvider } from './../providers/loteria';
+import { ListaTipoJogoProvider } from "../providers/lista.tipo.jogo";
+import { adMobProvider } from "../providers/ad.mob";
+import { Utilities } from '../providers/utilities';
 
 @NgModule({
   declarations: [
@@ -39,9 +38,7 @@ import { Utilities } from '../util/utilities';
     Utilities,
     LoteriaProvider,
     ListaTipoJogoProvider,
-    adMobProvider/*,
-    FileTransfer,
-    File*/
+    adMobProvider,
   ]
 })
 export class AppModule {}

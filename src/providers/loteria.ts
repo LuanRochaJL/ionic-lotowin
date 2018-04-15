@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { TipoJogo } from './tipo-jogo';
-import { ConfiguracaoJogo } from './configuracao-jogo';
-import { Utilities } from '../util/utilities';
+import { TipoJogo } from '../model/tipo.jogo';
+import { ConfiguracaoJogo } from '../model/configuracao.jogo';
+import { Utilities } from './utilities';
 
 
 @Injectable()
@@ -79,7 +79,6 @@ export class LoteriaProvider{
     }
 
     GetAposta(): number[][]{
-        debugger
         this.jogos = new Array(this.configjogo.qtdeJogos);
         this.checkCartela = !(this.configjogo.noRepetirNumero || this.configjogo.noSequencia); 
         if((this.configjogo.excluidos.length) + this.configjogo.qtdeNumeros > 60){
