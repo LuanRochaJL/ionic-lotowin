@@ -6,14 +6,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Printer } from '@ionic-native/printer';
+import { HttpModule } from '@angular/http';
 
 import { PagesModule } from './../pages/pages.module';
 import { ComponentsModule } from "../components/components.module";
 
-import { LoteriaProvider } from './../providers/loteria';
-import { ListaTipoJogoProvider } from "../providers/lista.tipo.jogo";
-import { adMobProvider } from "../providers/ad.mob";
-import { Utilities } from '../providers/utilities';
+import AdMobProvider from '../providers/ad-mob/ad-mob';
+import UtilitiesProvider from '../providers/utilities/utilities';
+import PrinterProvider from '../providers/printer/printer';
+import LoteriaProvider from '../providers/loteria/loteria';
+import TiposJogoProvider from '../providers/tipos-jogo/tipos-jogo';
+import LoteriaServiceProvider from '../providers/loteria-service/loteria-service';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,7 @@ import { Utilities } from '../providers/utilities';
     BrowserModule,
     ComponentsModule,
     PagesModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -34,11 +39,15 @@ import { Utilities } from '../providers/utilities';
     SplashScreen,
     AdMobFree,
     SocialSharing,
+    Printer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Utilities,
     LoteriaProvider,
-    ListaTipoJogoProvider,
-    adMobProvider,
+    AdMobProvider,
+    UtilitiesProvider,
+    PrinterProvider,
+    LoteriaProvider,
+    TiposJogoProvider,
+    LoteriaServiceProvider
   ]
 })
 export class AppModule {}

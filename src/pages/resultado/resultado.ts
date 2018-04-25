@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { LoteriaProvider } from "../../providers/loteria";
-import { adMobProvider } from "../../providers/ad.mob";
+import LoteriaProvider from "../../providers/loteria/loteria";
+import AdMobProvider from '../../providers/ad-mob/ad-mob';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import PrinterProvider from '../../providers/printer/printer';
 
 @Component({
   selector: 'page-resultado',
@@ -16,13 +17,14 @@ export class ResultadoPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               private loteria: LoteriaProvider,
-              private adMob: adMobProvider,
-              private socialSharing: SocialSharing) {
+              private adMob: AdMobProvider,
+              private socialSharing: SocialSharing,
+              private printer: PrinterProvider) {
   }
 
   GetAposta(){
     this.jogos = this.loteria.GetAposta();
-    if(this.loteria.configjogo.qtdeJogos == 1){
+    if(this.loteria.configjogo.QtdeJogos == 1){
       this.adMob.showBanner();
     }else{
       this.adMob.launchInterstitial();
@@ -75,8 +77,8 @@ export class ResultadoPage {
     this.adMob.close();
   }
 
-  SalvarAposta(){
-    
+  ImprimirAposta(){
+    this.printer.print();
   }
 
 }

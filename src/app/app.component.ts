@@ -5,10 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from './../pages/home/home';
 
-import { TipoJogo } from './../model/tipo.jogo';
-import { ListaTipoJogoProvider } from './../providers/lista.tipo.jogo';
-import { LoteriaProvider } from "../providers/loteria";
-import { Utilities } from './../providers/utilities';
+import TipoJogo from './../model/tipo-jogo';
+import TiposJogoProvider from './../providers/tipos-jogo/tipos-jogo';
+import LoteriaProvider from "../providers/loteria/loteria";
+import UtilitiesProvider from '../providers/utilities/utilities';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,8 +25,9 @@ export class MyApp {
               public statusBar: StatusBar, 
               public splashScreen: SplashScreen, 
               private loteria: LoteriaProvider,
-              private tipoJogo: ListaTipoJogoProvider,
-              private util: Utilities) {
+              private tipoJogo: TiposJogoProvider,
+              private util: UtilitiesProvider) {
+    this.initializeApp();
   }
 
   initializeApp() {
@@ -37,9 +38,9 @@ export class MyApp {
   }
 
   ngOnInit(){
-    this.initializeApp();
+    this.util.carregarExecutandoViaBrowser(this.platform);
     this.tipos = [this.tipoJogo.MegaSena, this.tipoJogo.LotoFacil];
-    this.page = {imgOrigem: this.util.imgOrigem(this.platform)}
+    this.page = {imgOrigem: this.util.imgOrigem()}
     this.loteria.setConfigJogoPadrao(this.tipoJogo.MegaSena);  
   }
 

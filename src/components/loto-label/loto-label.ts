@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { LoteriaProvider } from "../../providers/loteria";
+import LoteriaProvider from "../../providers/loteria/loteria";
 
 @Component({
   selector: 'loto-label',

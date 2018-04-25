@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 
-import { LoteriaProvider } from './../../providers/loteria';
+import LoteriaProvider from './../../providers/loteria/loteria';
 import { ResultadoPage } from './../resultado/resultado';
-import { Utilities } from "../../providers/utilities";
+import UtilitiesProvider from './../../providers/utilities/utilities';
+import LoteriaServiceProvider from '../../providers/loteria-service/loteria-service';
+import LoteriaService from '../../model/loteria-service';
 
 @Component({
   selector: 'page-home',
@@ -20,11 +22,14 @@ export class HomePage {
   private chk: Array<{lblValor: string, classe: string}>;
   private cartela: Array<{lblValor: string, index: boolean}>;
   private page: {imgOrigem: string};
+  private ultimoJogo: LoteriaService = new LoteriaService();
+  private concursoAtualCarregado: boolean = false;
 
   constructor(public platform: Platform,
               public navCtrl: NavController, 
               private loteria: LoteriaProvider, 
-              private util: Utilities) {
+              private util: UtilitiesProvider,
+  private loteriaService: LoteriaServiceProvider) {
   }
 
   ngOnInit(){
@@ -52,24 +57,40 @@ export class HomePage {
       { lblValor: 'Excluir n°', index: this.indice.tipoCartela.excluidos}
     ];
 
-    this.page = {imgOrigem: this.util.imgOrigem(this.platform)}
+    this.page = {imgOrigem: this.util.imgOrigem()}
+
+    this.getUltimoJogo();
   }
 
   excluirNumero(chip: number, tipo: boolean) {
     if(tipo){
-      let index = this.loteria.configjogo.escolhidos.indexOf(+chip);
+      let index = this.loteria.configjogo.Escolhidos.indexOf(+chip);
       if (index > -1) {
-        this.loteria.configjogo.escolhidos.splice(index, 1);
+        this.loteria.configjogo.Escolhidos.splice(index, 1);
       }
     }else{
-      let index = this.loteria.configjogo.excluidos.indexOf(+chip);
+      let index = this.loteria.configjogo.Excluidos.indexOf(+chip);
       if (index > -1) {
-        this.loteria.configjogo.excluidos.splice(index, 1);
+        this.loteria.configjogo.Excluidos.splice(index, 1);
       }
     }
   }
 
   GetAposta(){
     this.navCtrl.push(ResultadoPage);
+  }
+
+  getUltimoJogo(): void {
+    this.loteriaService.getUltimoJogo()
+        .subscribe((data: LoteriaService) => {  
+          this.ultimoJogo = data; 
+          this.ultimoJogo.resultadoSeparado = this.ultimoJogo.resultadoOrdenado.split("-", this.loteria.tipoJogo.getQtdNumMin()); 
+          this.concursoAtualCarregado = true;
+        }/*,
+      error => console.log(error)*/);
+  }
+
+  trocaConcursoAtual(){
+    this.concursoAtualCarregado = !this.concursoAtualCarregado ;
   }
 }

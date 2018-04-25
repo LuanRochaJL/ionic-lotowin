@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 
-import { LoteriaProvider } from '../../providers/loteria';
+import LoteriaProvider from '../../providers/loteria/loteria';
 
 @Component({
   selector: 'loto-cartela',
@@ -16,10 +16,10 @@ export class LotoCartelaComponent {
   }
 
   listaNumeros(tipo: boolean = this.cartelaValor.index) {
-    let numeros = tipo ? this.loteria.configjogo.escolhidos : this.loteria.configjogo.excluidos;
-    let numOcultar = tipo ? this.loteria.configjogo.excluidos : this.loteria.configjogo.escolhidos;
+    let numeros = tipo ? this.loteria.configjogo.Escolhidos : this.loteria.configjogo.Excluidos;
+    let numOcultar = tipo ? this.loteria.configjogo.Excluidos : this.loteria.configjogo.Escolhidos;
     let alert = this.alertCtrl.create({
-      title: 'Selecione até '+this.loteria.configjogo.qtdeNumeros+'  números!'
+      title: 'Selecione até '+this.loteria.configjogo.QtdeNumeros+'  números!'
     });
     
     for(let num = 1;num <= this.loteria.tipoJogo.getQtdNum();num++){
@@ -43,9 +43,9 @@ export class LotoCartelaComponent {
         }
         let mensagem: string = "";
 
-        if(!tipo && ((numeros.length) + this.loteria.configjogo.qtdeNumeros > 60)){
-          mensagem = "A quantidade de números excluídos impossibilita gerar jogos com "+this.loteria.configjogo.qtdeNumeros+"!"
-        }else if(tipo && ((numeros.length) > this.loteria.configjogo.qtdeNumeros)){
+        if(!tipo && ((numeros.length) + this.loteria.configjogo.QtdeNumeros > 60)){
+          mensagem = "A quantidade de números excluídos impossibilita gerar jogos com "+this.loteria.configjogo.QtdeNumeros+"!"
+        }else if(tipo && ((numeros.length) > this.loteria.configjogo.QtdeNumeros)){
           mensagem = "Quantidade de números escolhidos para jogar excede a quantidade de número definida por jogo!"  
         };
 
@@ -58,9 +58,9 @@ export class LotoCartelaComponent {
           alertValidacao.present();
         }else{
           if(tipo){
-            this.loteria.configjogo.escolhidos = numeros;
+            this.loteria.configjogo.Escolhidos = numeros;
           }else{
-            this.loteria.configjogo.excluidos = numeros;
+            this.loteria.configjogo.Excluidos = numeros;
           }
         }
       }

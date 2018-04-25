@@ -12,12 +12,30 @@
       <ion-title item-start>
         <ion-label class="{{loteria.tipoJogo.getClasse()}}">{{loteria.tipoJogo.getModalidade()}}</ion-label>
       </ion-title>
+      
     </div>
-    
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-grid *ngIf="concursoAtualCarregado; else showLoading">
+    <ion-row>
+      <ion-col>
+          <loto-label lblValor="Concurso n° {{ ultimoJogo.proximoConcurso }}"></loto-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1 *ngFor="let coluna of ultimoJogo.resultadoSeparado" >
+        <div class="num-jogo-{{ loteria.tipoJogo.getClasse() }}">
+          {{ coluna }}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ng-template #showLoading>
+    <ion-spinner  color="{{ loteria.tipoJogo.getClasse() }}"></ion-spinner>
+  </ng-template>
+
   <loto-range [rngValor]="rngQtde[indice.rngQtde.jogo]" (metodoSet)="loteria.configjogo.setQtdeJogos($event)"></loto-range>
   <loto-range [rngValor]="rngQtde[indice.rngQtde.numero]" (metodoSet)="loteria.configjogo.setQtdeNumeros($event)"></loto-range>
 

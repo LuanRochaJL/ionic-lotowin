@@ -1,6 +1,6 @@
 import { Input, Component, Output, EventEmitter } from '@angular/core';
 
-import { LoteriaProvider } from "../../providers/loteria";
+import LoteriaProvider from "../../providers/loteria/loteria";
 
 @Component({
   selector: 'loto-chip',
