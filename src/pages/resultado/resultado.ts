@@ -78,7 +78,7 @@ export class ResultadoPage {
   }
 
   ImprimirAposta(){
-    this.printer.print();
+    this.printer.imprimirJogosHtm(this.jogos, this.loteria.tipoJogo.getCor());
   }
 
 }

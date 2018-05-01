@@ -12,7 +12,6 @@ export default class UtilitiesProvider {
   carregarExecutandoViaBrowser(platform: Platform): void{
     this.ExecutandoViaBrowser = platform.is('core');
   }
-  
 
   getRandom(min, max) {
     return Math.floor(Math.random() * ((max+1) - min) + min);

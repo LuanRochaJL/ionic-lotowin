@@ -9,7 +9,8 @@ export default class TipoJogo{
         private QtdNumMax: number,
         private QtdNum: number,
         private Preco:number,
-        private Url: string
+        private Url: string,
+        private Cor: string
     ) {
     }
 
@@ -47,5 +48,9 @@ export default class TipoJogo{
 
     public getUrl(): string{
         return this.Url;
+    }
+
+    public getCor(): string{
+        return this.Cor;
     }
 };
