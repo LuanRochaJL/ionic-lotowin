@@ -21,10 +21,6 @@ loto-chip{
     border-radius: 50%;
 }
 
-.selected {
-    background-color: #dddddd;
-}
-
 @each $loteria, $tipo in $lista-tipo-jogo {
     .#{$loteria} {
         color: map-get($tipo, color);

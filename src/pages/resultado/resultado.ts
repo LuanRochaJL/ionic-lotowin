@@ -24,6 +24,7 @@ export class ResultadoPage {
 
   GetAposta(){
     this.jogos = this.loteria.GetAposta();
+    
     if(this.loteria.configjogo.QtdeJogos == 1){
       this.adMob.showBanner();
     }else{
@@ -40,12 +41,12 @@ export class ResultadoPage {
     }
   }
 
-  getClasseSelecionado(id){
+  getCheckBoxSelecionado(id){
     let index = this.jogosSelecionados.indexOf(id);
     if(index > -1){
-      return "selected";
+      return "true";
     }else{
-      return "";
+      return "false";
     }
   }
 

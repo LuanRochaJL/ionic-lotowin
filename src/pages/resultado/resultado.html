@@ -7,30 +7,39 @@
 <ion-content padding>
   
   <ion-card *ngFor="let jogo of jogos; let i = index" (click)="selecionarJogo(i)">
-    <ion-card-header class="card-header card-header-md {{ getClasseSelecionado(i) }}">
+    <ion-card-header class="card-header card-header-md">
       <ion-grid>
         <ion-row>
-          <ion-col col-2 *ngFor="let coluna of jogos[i]" >
-            <div class="num-jogo-{{ loteria.tipoJogo.getClasse() }}">
-              {{ coluna }}
-            </div>
-          </ion-col>
+          <ion-row col-2>
+            <ion-col>
+              <div class="coluna">
+                <ion-checkbox color="{{ loteria.tipoJogo.getClasse() }}" checked="{{ getCheckBoxSelecionado(i) }}"></ion-checkbox>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row col-10>
+            <ion-col col-2 *ngFor="let coluna of jogos[i]" >
+              <div class="num-jogo-{{ loteria.tipoJogo.getClasse() }}">
+                {{ coluna }}
+              </div>
+            </ion-col>
+          </ion-row>
         </ion-row>
       </ion-grid>
     </ion-card-header>
   </ion-card>
 
-  <button ion-button color="{{ loteria.tipoJogo.getClasse() }}" (click)="ImprimirAposta()" >
-    Imprimir
-  </button>
-
-  <ion-fab bottom right>
+  <ion-fab bottom left>
     <button ion-fab mini color="{{ loteria.tipoJogo.getClasse() }}">
-      <ion-icon name="md-share"></ion-icon>
+      <ion-icon name="md-add"></ion-icon>
     </button>
+    
     <ion-fab-list side="top">
       <button ion-fab (click)="whatsappShare()">
         <ion-icon name="logo-whatsapp"  color="{{ loteria.tipoJogo.getClasse() }}"></ion-icon>
+      </button>
+      <button ion-fab (click)="ImprimirAposta()">
+        <ion-icon name="md-print" color="{{ loteria.tipoJogo.getClasse() }}"></ion-icon>
       </button>
     </ion-fab-list>
   </ion-fab>
